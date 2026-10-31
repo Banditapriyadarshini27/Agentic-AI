@@ -1,0 +1,274 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   NETCOOP AI — EDITORIAL DESIGN SYSTEM & REFINED TOKENS
+   Strict Palette: Ink Black (#0E0E0C), Warm Ivory (#F4EFE6), Electric Teal (#00E5C7)
+   ========================================================================== */
+
+:root {
+  /* Strict 3-color palette */
+  --ink: #0E0E0C;
+  --ivory: #F4EFE6;
+  --teal: #00E5C7;
+
+  /* Opacity variations of ink */
+  --ink-90: rgba(14, 14, 12, 0.90);
+  --ink-70: rgba(14, 14, 12, 0.70);
+  --ink-40: rgba(14, 14, 12, 0.40);
+  --ink-15: rgba(14, 14, 12, 0.15);
+  --ink-08: rgba(14, 14, 12, 0.08);
+
+  /* Opacity variations of ivory */
+  --ivory-90: rgba(244, 239, 230, 0.90);
+  --ivory-70: rgba(244, 239, 230, 0.70);
+  --ivory-40: rgba(244, 239, 230, 0.40);
+  --ivory-15: rgba(244, 239, 230, 0.15);
+  --ivory-08: rgba(244, 239, 230, 0.08);
+
+  /* Typography */
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", monospace;
+
+  /* Layout */
+  --margin-gutter: clamp(1.5rem, 5vw, 6rem);
+  --hairline-ink: 1px solid var(--ink-15);
+  --hairline-ivory: 1px solid var(--ivory-15);
+  --solid-ink: 1.5px solid var(--ink);
+  --solid-ivory: 1.5px solid var(--ivory);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.65;
+  cursor: default;
+}
+
+/* Subtle paper texture overlay on ivory */
+.paper-grain {
+  position: relative;
+}
+.paper-grain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+
+/* Custom Cursor */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--teal);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+.custom-cursor-ring.active {
+  width: 44px;
+  height: 44px;
+  border-color: var(--teal);
+  background-color: rgba(0, 229, 199, 0.04);
+}
+
+.custom-cursor-dot.on-dark {
+  background-color: var(--ivory);
+}
+
+/* Theme Sections */
+.theme-ivory {
+  background-color: var(--ivory);
+  color: var(--ink);
+  transition: background-color 0.5s cubic-bezier(0.76, 0, 0.24, 1), color 0.5s ease;
+}
+
+.theme-ink {
+  background-color: var(--ink);
+  color: var(--ivory);
+  transition: background-color 0.5s cubic-bezier(0.76, 0, 0.24, 1), color 0.5s ease;
+}
+
+/* Typography styles */
+.serif-display {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.serif-headline {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.serif-subhead {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.mono-text {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: -0.01em;
+}
+
+.editorial-caption {
+  font-size: 0.8125rem;
+  opacity: 0.65;
+  max-width: 58ch;
+}
+
+/* Links with editorial animated underline */
+.editorial-link {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.editorial-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-link:hover::after,
+.editorial-link.active::after {
+  transform: scaleX(1);
+}
+
+/* Hairlines */
+.hairline-top {
+  border-top: var(--hairline-ink);
+}
+.hairline-bottom {
+  border-bottom: var(--hairline-ink);
+}
+.theme-ink .hairline-top {
+  border-top: var(--hairline-ivory);
+}
+.theme-ink .hairline-bottom {
+  border-bottom: var(--hairline-ivory);
+}
+
+.hairline-right {
+  border-right: var(--hairline-ink);
+}
+.theme-ink .hairline-right {
+  border-right: var(--hairline-ivory);
+}
+
+/* 12-column editorial grid */
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+/* Persistent Scroll Progress Bar */
+.scroll-progress-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--teal);
+  z-index: 10000;
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* Keyboard accessibility */
+:focus-visible {
+  outline: 1.5px solid var(--teal);
+  outline-offset: 3px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .custom-cursor-dot, .custom-cursor-ring {
+    display: none !important;
+  }
+}
