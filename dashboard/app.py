@@ -42,6 +42,7 @@ from data.scenarios import (
 )
 from diagnosis.models import DiagnosticReport, NetworkHealthStatus
 from orchestrator.orchestrator import CentralOrchestrator
+from evaluation.baseline import NaiveThresholdBaseline
 
 # -----------------------------------------------------------------------------
 # PAGE CONFIGURATION & STYLING
@@ -130,6 +131,88 @@ def get_orchestrator():
 
 
 orchestrator = get_orchestrator()
+
+def render_copilot_chat(target_report: Any, key_prefix: str = "copilot") -> None:
+    """
+    Renders an interactive 'Ask NetCoop' Copilot interface for the given DiagnosticReport.
+    Provides 3 preset question quick-buttons, free-text prompt, and grounded vs fallback badge.
+    """
+    if not target_report:
+        return
+
+    from copilot.explainer import ask_copilot
+
+    st.markdown("---")
+    st.subheader("💬 Ask NetCoop Copilot")
+    st.caption("Ask questions about this diagnostic report in natural language. Answers are strictly grounded in report telemetry.")
+
+    history_key = f"{key_prefix}_history"
+    if history_key not in st.session_state:
+        st.session_state[history_key] = []
+
+    st.markdown("**Quick Inquiries:**")
+    c1, c2, c3 = st.columns(3)
+    preset_clicked = None
+    with c1:
+        if st.button("❓ Why this root cause?", key=f"{key_prefix}_btn_why_rc", use_container_width=True):
+            preset_clicked = "Why this root cause?"
+    with c2:
+        if st.button("🌐 Why not DNS?", key=f"{key_prefix}_btn_why_dns", use_container_width=True):
+            preset_clicked = "Why not DNS?"
+    with c3:
+        if st.button("🛡️ What should I do first and is it safe?", key=f"{key_prefix}_btn_what_first", use_container_width=True):
+            preset_clicked = "What should I do first and is it safe?"
+
+    q_col, submit_col = st.columns([4, 1])
+    with q_col:
+        custom_question = st.text_input(
+            "Or ask a custom question:",
+            key=f"{key_prefix}_custom_input",
+            placeholder="e.g. Which interface caused this issue?",
+            label_visibility="collapsed",
+        )
+    with submit_col:
+        custom_ask = st.button("Ask Copilot", key=f"{key_prefix}_ask_btn", use_container_width=True, type="primary")
+
+    question_to_ask = preset_clicked or (custom_question if custom_ask and custom_question.strip() else None)
+
+    if question_to_ask:
+        with st.spinner("Consulting NetCoop Copilot..."):
+            res = ask_copilot(target_report, question_to_ask)
+            st.session_state[history_key].insert(0, {
+                "question": question_to_ask,
+                "answer": res.answer,
+                "mode": res.mode,
+                "cited_evidence": res.cited_evidence,
+            })
+
+    history = st.session_state[history_key]
+    if history:
+        for item in history[:3]:
+            mode_badge = (
+                '<span style="background: #064e3b; color: #a7f3d0; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem;">🟢 Grounded LLM</span>'
+                if item["mode"] == "llm"
+                else '<span style="background: #78350f; color: #fde68a; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem;">🟠 Deterministic Fallback</span>'
+            )
+            citations_str = ""
+            if item.get("cited_evidence"):
+                c_badges = " ".join(f'<code style="background: #333333; color: #00ff1a; padding: 1px 5px; border-radius: 3px; font-size: 0.75rem;">{c}</code>' for c in item["cited_evidence"])
+                citations_str = f'<div style="margin-top: 8px; font-size: 0.8rem; color: #94a3b8;">Citations: {c_badges}</div>'
+
+            st.markdown(
+                f"""
+                <div style="background: #282828; border: 1px solid #404040; border-radius: 8px; padding: 14px; margin-top: 10px; margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <strong style="color: #ffe900; font-size: 0.95rem;">Q: {item['question']}</strong>
+                        {mode_badge}
+                    </div>
+                    <div style="color: #f2f2f2; font-size: 0.9rem; line-height: 1.5; white-space: pre-wrap;">{item['answer']}</div>
+                    {citations_str}
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
 
 # Initialize session state
 if "diagnostic_report" not in st.session_state:
@@ -380,7 +463,8 @@ if report:
 # MAIN NOC NAVIGATION TABS
 # -----------------------------------------------------------------------------
 
-tab_diag, tab_agents, tab_charts, tab_findings, tab_actions, tab_json = st.tabs([
+tab_demo, tab_diag, tab_agents, tab_charts, tab_findings, tab_actions, tab_json = st.tabs([
+    "⚡ Live Demo",
     "🔍 Diagnostic Summary & Evidence",
     "🤖 Agent Execution Status",
     "📈 Telemetry Visualizations",
@@ -388,6 +472,334 @@ tab_diag, tab_agents, tab_charts, tab_findings, tab_actions, tab_json = st.tabs(
     "🛠️ Recommendations & Runbooks",
     "📄 Unified JSON Report",
 ])
+
+# -----------------------------------------------------------------------------
+# TAB 0: LIVE DEMO & COMPARISON BENCHMARK
+# -----------------------------------------------------------------------------
+
+with tab_demo:
+    st.subheader("⚡ Live Scenario Injection & Benchmark Comparison")
+    st.markdown(
+        "Inject live synthetic network fault scenarios to observe **NetCoop AI's multi-agent causal inference** "
+        "compared against **traditional static threshold alarms** side-by-side."
+    )
+
+    demo_scenarios = [
+        ("congestion", "Network Congestion (Bufferbloat & High Queue Drops)"),
+        ("weak_wifi", "Weak Wi-Fi (Low RSSI & Elevated Retries)"),
+        ("interface_failure", "Interface Failure (Link Flapping & Down Events)"),
+        ("dns_failure", "DNS Failure (Resolution Timeouts & High Failure Rates)"),
+        ("dhcp_failure", "DHCP Failure (Pool Exhaustion & Lease Timeouts)"),
+        ("infrastructure_overload", "Infrastructure Overload (CPU & Memory Saturation)"),
+        ("silent_drift", "Silent Degradation (Rolling Baseline Anomaly Drift)"),
+        ("normal", "Healthy Network (All Metrics Nominal Baseline)"),
+    ]
+
+    col_sel, col_btn = st.columns([3, 1])
+    with col_sel:
+        selected_demo_scenario = st.selectbox(
+            "Select Scenario to Inject",
+            options=[s[0] for s in demo_scenarios],
+            format_func=lambda s: dict(demo_scenarios).get(s, s),
+            key="demo_scenario_selector",
+        )
+    with col_btn:
+        st.write("")
+        st.write("")
+        inject_btn = st.button("🚀 Inject Fault & Diagnose", use_container_width=True, type="primary")
+
+    if "demo_decisions" not in st.session_state:
+        st.session_state.demo_decisions = {}
+
+    if inject_btn:
+        with st.status("Diagnosing Network Incident...", expanded=True) as status:
+            st.write("📡 Ingesting telemetry stream...")
+            import time
+            time.sleep(0.3)
+
+            # 1. Telemetry generation
+            if selected_demo_scenario == "silent_drift":
+                base_time = datetime.now(timezone.utc)
+                records = []
+                for step in range(60):
+                    t_str = (base_time + pd.Timedelta(seconds=10 * step)).isoformat()
+                    lat = 16.0 + (step - 25) * 0.5 if step >= 25 else 16.0 + (step % 3) * 0.2
+                    records.append({
+                        "device_id": "core-router-01",
+                        "timestamp": t_str,
+                        "device_role": "ROUTER",
+                        "interface_status": "UP",
+                        "packet_loss_pct": 0.2 + (0.02 * (step - 25) if step >= 25 else 0.0),
+                        "latency_ms": lat,
+                        "jitter_ms": 2.0,
+                        "bandwidth_util_pct": 35.0,
+                        "cpu_utilization_pct": 28.0,
+                        "memory_utilization_pct": 40.0,
+                        "queue_drops": 0,
+                        "error_count": 0,
+                    })
+                df_demo = pd.DataFrame(records)
+                onset_step = 25
+                key_metric = "latency_ms"
+            else:
+                records = generate_scenario_data(selected_demo_scenario)
+                df_demo = pd.DataFrame(records)
+                onset_step = 10
+                key_metric_map = {
+                    "congestion": "queue_drops",
+                    "weak_wifi": "wifi_signal_strength_dbm",
+                    "interface_failure": "error_count",
+                    "dns_failure": "dns_failure_rate_pct",
+                    "dhcp_failure": "dhcp_failure_rate_pct",
+                    "infrastructure_overload": "cpu_utilization_pct",
+                    "normal": "latency_ms",
+                }
+                key_metric = key_metric_map.get(selected_demo_scenario, "latency_ms")
+
+            st.write("🤖 Dispatching domain agents (Performance, Infrastructure, Connectivity)...")
+            time.sleep(0.3)
+
+            # 2. Run NetCoop Central Orchestrator
+            orch = CentralOrchestrator()
+            demo_rep = orch.run_diagnosis(df_demo, scenario_name=selected_demo_scenario, save_report=False)
+
+            st.write("🧠 Correlating multi-agent findings & resolving contradictions...")
+            time.sleep(0.2)
+
+            st.write("🛠️ Formulating prescriptive, safety-gated recommendations...")
+            time.sleep(0.2)
+
+            # 3. Run Naive Threshold Baseline
+            baseline = NaiveThresholdBaseline()
+            base_res = baseline.diagnose_episode(records)
+
+            status.update(label="Diagnostic Assessment Complete", state="complete", expanded=False)
+
+            st.session_state.demo_report = demo_rep
+            st.session_state.demo_baseline = base_res
+            st.session_state.demo_df = df_demo
+            st.session_state.demo_onset = onset_step
+            st.session_state.demo_metric = key_metric
+            st.session_state.demo_scenario_active = selected_demo_scenario
+
+    if "demo_report" in st.session_state and st.session_state.demo_report:
+        d_rep = st.session_state.demo_report
+        d_base = st.session_state.demo_baseline
+        d_df = st.session_state.demo_df
+        d_metric = st.session_state.demo_metric
+        d_scen = st.session_state.demo_scenario_active
+
+        tot_alerts = d_base.total_alerts if d_base else 0
+        noise_red = f"{max(0.0, (1.0 - 1.0 / max(tot_alerts, 1)) * 100):.1f}%" if tot_alerts > 0 else "100.0%"
+
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("🚨 Traditional Alerts", f"{tot_alerts} Alarms", help="Uncorrelated threshold alerts from static rules")
+        m2.metric("🎯 NetCoop Root Causes", "1 Root Cause" if d_rep.fault_detected else "0 (Nominal)", help="Synthesized causal hypothesis")
+        m3.metric("📉 Noise Reduction", noise_red, help="Reduction in alarm volume")
+        m4.metric("🛡️ Network Health", d_rep.overall_network_health.value, help="Assessed network status")
+
+        st.markdown("---")
+
+        col_trad, col_net = st.columns(2)
+
+        with col_trad:
+            st.markdown(
+                f"""
+                <div style="background: #2a1515; border: 1px solid #7f1d1d; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="color: #fca5a5; margin: 0;">🚨 Traditional Threshold Alarms</h4>
+                        <span style="background: #7f1d1d; color: #fee2e2; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.85rem;">
+                            {tot_alerts} Active Alarms
+                        </span>
+                    </div>
+                    <p style="color: #d7d7d7; font-size: 0.85rem; margin: 8px 0 0 0;">
+                        Noisy flood of isolated per-metric breaches with no causal correlation.
+                    </p>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+            if d_base and d_base.alerts:
+                displayed_alerts = d_base.alerts[:8]
+                for al in displayed_alerts:
+                    st.markdown(
+                        f"""
+                        <div style="background: #1e1e1e; border-left: 3px solid #ef4444; padding: 8px 12px; margin-bottom: 6px; border-radius: 4px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <strong style="color: #f87171; font-size: 0.85rem;">[BREACH] {al.device_id}</strong>
+                                <span style="color: #94a3b8; font-size: 0.75rem;">ratio: {al.breach_ratio:.1f}x</span>
+                            </div>
+                            <div style="color: #d7d7d7; font-size: 0.8rem;">{al.description}</div>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+                if len(d_base.alerts) > 8:
+                    st.caption(f"... and {len(d_base.alerts) - 8} more uncorrelated alarms flooding the NOC.")
+            else:
+                st.info("No static threshold breaches observed.")
+
+        with col_net:
+            st.markdown(
+                f"""
+                <div style="background: #1e251a; border: 1px solid #14532d; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="color: #86efac; margin: 0;">🎯 NetCoop AI Multi-Agent Synthesis</h4>
+                        <span style="background: #14532d; color: #dcfce7; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.85rem;">
+                            1 Root Cause
+                        </span>
+                    </div>
+                    <p style="color: #d7d7d7; font-size: 0.85rem; margin: 8px 0 0 0;">
+                        Cross-domain causal correlation synthesized across 5 specialized agents.
+                    </p>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+            if d_rep.probable_root_cause:
+                rc = d_rep.probable_root_cause
+                st.markdown(
+                    f"""
+                    <div style="background: #282828; border: 1px solid #707070; padding: 14px; border-radius: 6px; margin-bottom: 12px;">
+                        <div style="color: #ffe900; font-weight: 700; font-size: 1.05rem;">{rc.title}</div>
+                        <div style="color: #d7d7d7; font-size: 0.85rem; margin-top: 4px;">{rc.description}</div>
+                        <div style="margin-top: 8px; font-size: 0.8rem; color: #a3a3a3;">
+                            Confidence: <strong style="color: #00ff1a;">{(d_rep.root_cause_confidence or 0.0) * 100:.1f}%</strong> | 
+                            Certainty: <strong style="color: #ffe900;">{d_rep.diagnosis_certainty}</strong>
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+                if rc.evidence:
+                    st.markdown("**Key Supporting Evidence:**")
+                    for ev in rc.evidence[:3]:
+                        st.caption(f"• {ev}")
+            else:
+                st.success("All systems nominal: No active fault detected. Telemetry within healthy parameters.")
+
+        st.markdown("---")
+
+        st.subheader("🛠️ Prescriptive Corrective Actions & Safety Approval")
+        demo_actions = getattr(d_rep, "recommended_corrective_actions", None) or getattr(d_rep, "recommendations", None) or []
+        if demo_actions:
+            for act in demo_actions:
+                c_info = categorize_action(act)
+                act_id = c_info["action_id"] or act.title
+                is_disruptive = c_info["is_disruptive"] or c_info["requires_human_approval"]
+                decision = st.session_state.demo_decisions.get(act_id)
+
+                act_col, btn_col = st.columns([3, 1])
+                with act_col:
+                    st.markdown(
+                        f"""
+                        <div style="background: #282828; border-left: 4px solid {c_info['category_color']}; padding: 12px; border-radius: 4px; margin-bottom: 8px;">
+                            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+                                <span style="background: {c_info['category_color']}22; color: {c_info['category_color']}; font-weight: 700; font-size: 0.75rem; padding: 2px 6px; border-radius: 3px;">
+                                    {c_info['category_label']}
+                                </span>
+                                <span style="background: {c_info['priority_color']}22; color: {c_info['priority_color']}; font-weight: 700; font-size: 0.75rem; padding: 2px 6px; border-radius: 3px;">
+                                    {c_info['priority_label']}
+                                </span>
+                                <span style="background: {c_info['risk_color']}22; color: {c_info['risk_color']}; font-weight: 700; font-size: 0.75rem; padding: 2px 6px; border-radius: 3px;">
+                                    {c_info['risk_label']}
+                                </span>
+                                <strong style="color: #f2f2f2; font-size: 0.95rem;">{act.title}</strong>
+                            </div>
+                            <div style="color: #d7d7d7; font-size: 0.85rem;">{act.description}</div>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+                    if c_info.get("prerequisites") or c_info.get("verification_steps") or c_info.get("rollback_steps"):
+                        with st.expander(f"Runbook Procedures: {act.title}"):
+                            if c_info.get("prerequisites"):
+                                st.markdown(f"**Prerequisites:** {', '.join(c_info['prerequisites'])}")
+                            if c_info.get("verification_steps"):
+                                st.markdown(f"**Verification:** {', '.join(c_info['verification_steps'])}")
+                            if c_info.get("rollback_steps"):
+                                st.markdown(f"**Rollback:** {', '.join(c_info['rollback_steps'])}")
+                with btn_col:
+                    st.write("")
+                    if is_disruptive:
+                        if decision == "APPROVED":
+                            st.success("✅ Execution Approved")
+                        elif decision == "REJECTED":
+                            st.error("❌ Execution Rejected")
+                        else:
+                            st.markdown(
+                                '<span style="background: #78350f; color: #fde68a; font-size: 0.75rem; font-weight: 700; padding: 3px 6px; border-radius: 3px;">⚠️ Awaiting Human Approval</span>',
+                                unsafe_allow_html=True,
+                            )
+                            b1, b2 = st.columns(2)
+                            with b1:
+                                if st.button("Approve", key=f"app_{act_id}", use_container_width=True):
+                                    st.session_state.demo_decisions[act_id] = "APPROVED"
+                                    st.rerun()
+                            with b2:
+                                if st.button("Reject", key=f"rej_{act_id}", use_container_width=True):
+                                    st.session_state.demo_decisions[act_id] = "REJECTED"
+                                    st.rerun()
+                    else:
+                        st.markdown(
+                            '<span style="background: #064e3b; color: #a7f3d0; font-size: 0.75rem; font-weight: 700; padding: 3px 6px; border-radius: 3px;">✓ Safe / Read-Only</span>',
+                            unsafe_allow_html=True,
+                        )
+        else:
+            st.info("No corrective remediation required for this scenario.")
+
+        if d_metric in d_df.columns and "timestamp" in d_df.columns:
+            st.markdown("---")
+            st.subheader(f"📈 Telemetry Metric Timeline: `{d_metric}`")
+
+            d_df_plot = d_df.copy()
+            try:
+                d_df_plot["ts"] = pd.to_datetime(d_df_plot["timestamp"])
+                d_df_plot = d_df_plot.sort_values("ts")
+            except Exception:
+                d_df_plot["ts"] = range(len(d_df_plot))
+
+            fig_timeline = go.Figure()
+            devices = d_df_plot["device_id"].unique() if "device_id" in d_df_plot.columns else ["default"]
+            colors = ["#ffe900", "#00ff1a", "#38bdf8", "#f43f5e", "#a855f7"]
+
+            for idx, dev in enumerate(devices[:4]):
+                sub = d_df_plot[d_df_plot["device_id"] == dev] if "device_id" in d_df_plot.columns else d_df_plot
+                fig_timeline.add_trace(
+                    go.Scatter(
+                        x=sub["ts"],
+                        y=pd.to_numeric(sub[d_metric], errors="coerce"),
+                        mode="lines+markers",
+                        name=str(dev),
+                        line=dict(color=colors[idx % len(colors)], width=2),
+                    )
+                )
+
+            if len(d_df_plot) > 10:
+                onset_ts = d_df_plot["ts"].iloc[min(10, len(d_df_plot)-1)]
+                fig_timeline.add_vline(
+                    x=onset_ts,
+                    line_dash="dash",
+                    line_color="#ef4444",
+                    annotation_text="Fault Onset",
+                    annotation_font_color="#ef4444",
+                )
+
+            fig_timeline.update_layout(
+                template="plotly_dark",
+                paper_bgcolor="#1f1d01",
+                plot_bgcolor="#282828",
+                margin=dict(l=40, r=40, t=30, b=40),
+                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+                xaxis=dict(gridcolor="#404040", title="Timestamp"),
+                yaxis=dict(gridcolor="#404040", title=d_metric),
+            )
+            st.plotly_chart(fig_timeline, use_container_width=True)
+
+        render_copilot_chat(d_rep, key_prefix="demo_copilot")
 
 # -----------------------------------------------------------------------------
 # TAB 1: DIAGNOSTIC SUMMARY & EVIDENCE (SECTION B)
@@ -462,6 +874,8 @@ with tab_diag:
             st.markdown("#### ℹ️ Diagnostic Uncertainty Notes & Evidence Gaps")
             for note in report.uncertainty_notes:
                 st.info(f"• {note}")
+
+        render_copilot_chat(report, key_prefix="diag_copilot")
 
     else:
         st.info("Click **'🚀 Run Multi-Agent Diagnosis'** in the sidebar to analyze telemetry and generate root cause evidence.")

@@ -4,6 +4,7 @@ import concurrent.futures
 from datetime import datetime, timezone
 import json
 import logging
+import math
 import os
 from pathlib import Path
 import time
@@ -16,6 +17,7 @@ from pydantic import ValidationError
 from agents.connectivity_agent import ConnectivityAgent
 from agents.infrastructure_agent import InfrastructureAgent
 from agents.performance_agent import PerformanceAgent
+from agents.baseline_detector import BaselineDetector
 from communication.models import (
     AgentMessage,
     AgentStatus,
@@ -63,8 +65,11 @@ class CentralOrchestrator:
         connectivity_agent: Any = _DEFAULT_AGENT,
         correlation_agent: Any = _DEFAULT_AGENT,
         recommendation_agent: Any = _DEFAULT_AGENT,
+        enable_baseline: bool = True,
     ):
         self.agent_timeout = agent_timeout_seconds
+        self.enable_baseline = enable_baseline
+        self.baseline_detector = BaselineDetector() if enable_baseline else None
         self.reports_dir = Path(reports_dir) if reports_dir else Path("reports")
         try:
             self.reports_dir.mkdir(parents=True, exist_ok=True)
@@ -87,6 +92,7 @@ class CentralOrchestrator:
         telemetry: Union[pd.DataFrame, List[Dict[str, Any]], List[NetworkTelemetryRecord], TelemetryBatch],
         scenario_name: Optional[str] = None,
         save_report: bool = True,
+        enable_baseline: Optional[bool] = None,
     ) -> DiagnosticReport:
         """
         Executes end-to-end multi-agent network fault diagnosis with robust failure recovery,
@@ -183,6 +189,53 @@ class CentralOrchestrator:
         rejected_messages: List[Dict[str, Any]] = []
         validated_findings: List[Finding] = []
         seen_message_ids: Set[str] = set()
+
+        # 1.5 Rolling Baseline Anomaly Detection (Silent Degradation)
+        active_enable_baseline = self.enable_baseline if enable_baseline is None else enable_baseline
+        baseline_findings: List[Finding] = []
+        baseline_evidence: List[EvidenceItem] = []
+
+        if active_enable_baseline and not df.empty:
+            detector = BaselineDetector()
+            df_chrono = df.copy()
+            if "timestamp" in df_chrono.columns:
+                try:
+                    df_chrono["_ts_dt"] = pd.to_datetime(df_chrono["timestamp"], format="mixed", utc=True, errors="coerce")
+                    df_chrono = df_chrono.sort_values("_ts_dt").drop(columns=["_ts_dt"])
+                except Exception:
+                    pass
+            records_chrono = df_chrono.to_dict(orient="records")
+            for rec in records_chrono:
+                anoms = detector.update_and_score(rec)
+                for anom in anoms:
+                    ev = EvidenceItem(
+                        metric_name=anom["metric"],
+                        observed_value=anom["value"],
+                        threshold=anom["baseline"],
+                        unit=anom.get("unit", ""),
+                        device_id=anom["device_id"],
+                        details=anom["description"],
+                    )
+                    baseline_evidence.append(ev)
+                    fnd = Finding(
+                        category="PERFORMANCE",
+                        title=f"Rolling Baseline Anomaly: {anom['metric']} on {anom['device_id']}",
+                        description=anom["description"],
+                        severity=Severity.MEDIUM,
+                        affected_devices=[anom["device_id"]],
+                        metrics={
+                            anom["metric"]: anom["value"],
+                            "baseline": anom["baseline"],
+                            "z_score": anom["z_score"],
+                            "sustained_points": anom["sustained_points"],
+                        },
+                        metric_name=anom["metric"],
+                        observed_value=anom["value"],
+                        threshold_value=anom["baseline"],
+                        source_agent="baseline_detector",
+                        finding_type="OBSERVED_EVIDENCE",
+                    )
+                    baseline_findings.append(fnd)
 
         # Build list of active domain agents (handling missing optional agents)
         domain_agents = []
@@ -332,7 +385,20 @@ class CentralOrchestrator:
 
         # 4. Fault Correlation
         try:
-            correlation_raw = self.correlation_agent.correlate(task_id, agent_messages)
+            correlation_inputs = dict(agent_messages)
+            if baseline_findings:
+                correlation_inputs["baseline_detector"] = AgentMessage(
+                    agent_id="baseline_detector",
+                    sender_agent_id="baseline_detector",
+                    task_id=task_id,
+                    timestamp=datetime.now(timezone.utc),
+                    status=AgentStatus.SUCCESS,
+                    confidence=0.55,
+                    findings=baseline_findings,
+                    evidence=baseline_evidence,
+                    metadata={"source": "baseline_detector", "anomaly_count": len(baseline_findings)},
+                )
+            correlation_raw = self.correlation_agent.correlate(task_id, correlation_inputs)
             correlation_msg, corr_rejection = self._validate_agent_message(
                 raw_msg=correlation_raw,
                 expected_agent_id="correlation_agent",
@@ -419,6 +485,13 @@ class CentralOrchestrator:
         # Supporting evidence consolidation (deduplicating metric duplicates)
         consolidated_evidence: List[EvidenceItem] = []
         seen_evidence_keys = set()
+        if baseline_evidence:
+            for e in baseline_evidence:
+                ev_key = (e.device_id, e.metric_name, e.observed_value)
+                if ev_key not in seen_evidence_keys:
+                    seen_evidence_keys.add(ev_key)
+                    consolidated_evidence.append(e)
+
         for msg in agent_messages.values():
             for e in msg.evidence:
                 ev_key = (e.device_id, e.metric_name, e.observed_value)
@@ -531,6 +604,9 @@ class CentralOrchestrator:
             warnings_list.append(f"Stale telemetry detected for device(s): {', '.join(stale_devices)}.")
         if final_confidence < 0.40:
             warnings_list.append("Low diagnostic confidence (< 0.40); root cause is provisional or indeterminate.")
+
+        if baseline_findings:
+            validated_findings.extend(baseline_findings)
 
         # Assemble unified DiagnosticReport (satisfying all Milestone 9 and 10 requirements)
         all_hypotheses = ([rc_candidate] if rc_candidate else []) + alt_causes
@@ -657,7 +733,7 @@ class CentralOrchestrator:
         batch_max_ts = None
         if "timestamp" in df.columns:
             try:
-                ts_series = pd.to_datetime(df["timestamp"], utc=True, errors="coerce")
+                ts_series = pd.to_datetime(df["timestamp"], format="mixed", utc=True, errors="coerce")
                 if not ts_series.dropna().empty:
                     batch_max_ts = ts_series.max()
             except Exception:
@@ -671,7 +747,7 @@ class CentralOrchestrator:
                 is_stale = False
                 if batch_max_ts is not None and "timestamp" in dev_df.columns:
                     try:
-                        dev_ts = pd.to_datetime(dev_df["timestamp"], utc=True, errors="coerce")
+                        dev_ts = pd.to_datetime(dev_df["timestamp"], format="mixed", utc=True, errors="coerce")
                         if not dev_ts.dropna().empty:
                             dev_max_ts = dev_ts.max()
                             # If device's latest telemetry is over 3 minutes older than the batch max, it is stale
@@ -913,7 +989,12 @@ class CentralOrchestrator:
                 if "device_id" not in row or not str(row["device_id"]).strip():
                     validation_errors.append(f"Record {idx}: Missing required 'device_id'.")
                     continue
-                validated_rec = NetworkTelemetryRecord.model_validate(row)
+                # Sanitize NaN/Inf and pandas NA values to None so optional fields validate cleanly
+                cleaned_row = {
+                    k: (None if (isinstance(v, float) and (math.isnan(v) or math.isinf(v))) or pd.isna(v) else v)
+                    for k, v in row.items()
+                }
+                validated_rec = NetworkTelemetryRecord.model_validate(cleaned_row)
                 valid_rows.append(validated_rec.model_dump())
             except ValidationError as err:
                 validation_errors.append(f"Record {idx} validation failure: {str(err).splitlines()[0]}")

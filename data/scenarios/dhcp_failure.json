@@ -2,7 +2,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:25:46.046232Z",
+    "timestamp": "2026-11-01T02:09:49.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 14.0,
@@ -23,7 +23,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:25:46.046232Z",
+    "timestamp": "2026-11-01T02:09:49.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 14.0,
@@ -44,7 +44,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:25:56.046232Z",
+    "timestamp": "2026-11-01T02:09:59.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 14.0,
@@ -65,7 +65,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:25:56.046232Z",
+    "timestamp": "2026-11-01T02:09:59.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 14.0,
@@ -86,7 +86,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:06.046232Z",
+    "timestamp": "2026-11-01T02:10:09.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -107,7 +107,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:06.046232Z",
+    "timestamp": "2026-11-01T02:10:09.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -128,7 +128,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:16.046232Z",
+    "timestamp": "2026-11-01T02:10:19.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -149,7 +149,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:16.046232Z",
+    "timestamp": "2026-11-01T02:10:19.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -170,7 +170,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:26.046232Z",
+    "timestamp": "2026-11-01T02:10:29.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -191,7 +191,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:26.046232Z",
+    "timestamp": "2026-11-01T02:10:29.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -212,7 +212,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:36.046232Z",
+    "timestamp": "2026-11-01T02:10:39.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -233,7 +233,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:36.046232Z",
+    "timestamp": "2026-11-01T02:10:39.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -254,7 +254,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:46.046232Z",
+    "timestamp": "2026-11-01T02:10:49.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -275,7 +275,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:46.046232Z",
+    "timestamp": "2026-11-01T02:10:49.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -296,7 +296,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:56.046232Z",
+    "timestamp": "2026-11-01T02:10:59.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -317,7 +317,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:26:56.046232Z",
+    "timestamp": "2026-11-01T02:10:59.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -338,7 +338,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:27:06.046232Z",
+    "timestamp": "2026-11-01T02:11:09.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -359,7 +359,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:27:06.046232Z",
+    "timestamp": "2026-11-01T02:11:09.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -380,7 +380,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:27:16.046232Z",
+    "timestamp": "2026-11-01T02:11:19.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -401,7 +401,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:27:16.046232Z",
+    "timestamp": "2026-11-01T02:11:19.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -422,7 +422,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:27:26.046232Z",
+    "timestamp": "2026-11-01T02:11:29.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -443,7 +443,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:27:26.046232Z",
+    "timestamp": "2026-11-01T02:11:29.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -464,7 +464,7 @@
   {
     "device_id": "finance-laptop-07",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:27:36.046232Z",
+    "timestamp": "2026-11-01T02:11:39.022307Z",
     "location": "Finance-4F",
     "interface_name": "wlan0",
     "latency_ms": 999.0,
@@ -485,7 +485,7 @@
   {
     "device_id": "sales-tablet-12",
     "device_type": "endpoint",
-    "timestamp": "2026-10-31T17:27:36.046232Z",
+    "timestamp": "2026-11-01T02:11:39.022307Z",
     "location": "Lobby",
     "interface_name": "wlan0",
     "latency_ms": 999.0,

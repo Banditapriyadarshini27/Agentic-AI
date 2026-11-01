@@ -672,6 +672,36 @@ class RecommendationAgent:
             )
 
         # =====================================================================
+        # SCENARIO H: Rolling Baseline Anomaly / Silent Degradation
+        # =====================================================================
+        elif "baseline" in title or "drift" in title or "degradation" in title:
+            actions.append(
+                RecommendationItem(
+                    hypothesis_id=hyp_id,
+                    title="Investigate Rolling Baseline Metric Drift & Background Workload",
+                    category="DIAGNOSTIC",
+                    description=(
+                        f"Statistical baseline anomaly detected on {target_dev}. Telemetry metric is drifting "
+                        "gradually without crossing static SLA thresholds. Inspect background process workload, "
+                        "recent routing updates, and link utilization trends."
+                    ),
+                    affected_devices=devices,
+                    supporting_evidence=evidence_texts,
+                    priority=ActionPriority.P2_HIGH.value,
+                    severity=rc.severity,
+                    confidence=rc.confidence,
+                    action_type=ActionType.DIAGNOSTIC.value,
+                    execution_risk=ExecutionRisk.LOW.value,
+                    estimated_impact="Isolates silent degradation root cause before reaching critical SLA thresholds.",
+                    prerequisites=[],
+                    verification_steps=["Verify if metric returns to baseline distribution after workload isolation."],
+                    rollback_steps=[],
+                    requires_human_approval=False,
+                    automation_command=f"ssh admin@{target_dev} 'show system statistics'",
+                )
+            )
+
+        # =====================================================================
         # SCENARIO G / FALLBACK: General / Deep Packet Inspection
         # =====================================================================
         else:

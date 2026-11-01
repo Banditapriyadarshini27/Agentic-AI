@@ -12,7 +12,7 @@ import uuid
 from fastapi import FastAPI, File, HTTPException, Query, Request, UploadFile, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 
 from communication.models import (
@@ -163,6 +163,16 @@ class ReportListResponse(BaseModel):
     total: int
 
 
+class AskReportRequest(BaseModel):
+    question: str = Field(..., description="Operator question regarding this diagnostic report.")
+
+
+class AskReportResponse(BaseModel):
+    answer: str = Field(..., description="Grounded explanation of the report telemetry and diagnosis.")
+    mode: str = Field(..., description="Inference mode: 'llm' or 'fallback'.")
+    cited_evidence: List[str] = Field(default_factory=list, description="List of evidence citation identifiers such as [E1], [E2].")
+
+
 # =============================================================================
 # EXCEPTION HANDLERS
 # =============================================================================
@@ -264,6 +274,35 @@ def get_scenario_data(scenario_id: str):
     )
 
 
+@app.get(
+    "/api/scenarios/{scenario_id}/csv",
+    summary="Download Scenario Telemetry as CSV",
+    tags=["Scenarios"],
+)
+def download_scenario_csv(scenario_id: str):
+    """Returns the scenario telemetry records formatted as downloadable CSV."""
+    clean_id = Path(scenario_id).stem.lower()
+    csv_path = Path("data/scenarios") / f"{clean_id}.csv"
+    if not csv_path.exists():
+        csv_path = Path("data/samples") / f"{clean_id}.csv"
+    if csv_path.exists():
+        with open(csv_path, "r", encoding="utf-8") as f:
+            csv_content = f.read()
+    else:
+        records = generate_scenario_data(clean_id)
+        if not records:
+            raise HTTPException(status_code=404, detail=f"Scenario '{scenario_id}' not found.")
+        import pandas as pd
+        df = pd.DataFrame(records)
+        csv_content = df.to_csv(index=False)
+
+    return Response(
+        content=csv_content,
+        media_type="text/csv",
+        headers={"Content-Disposition": f"attachment; filename={clean_id}.csv"},
+    )
+
+
 @app.post(
     "/api/telemetry/submit",
     response_model=TelemetrySubmitResponse,
@@ -317,6 +356,33 @@ async def upload_csv_telemetry(file: UploadFile = File(...)):
         "warnings": warnings,
         "sample_records": sample_records,
     }
+
+
+@app.post(
+    "/api/upload",
+    summary="Upload & Parse Telemetry CSV (Alias)",
+    tags=["Telemetry"],
+)
+async def upload_csv_telemetry_alias(file: UploadFile = File(...)):
+    """Alias for /api/telemetry/upload-csv."""
+    return await upload_csv_telemetry(file)
+
+
+@app.post(
+    "/api/validate",
+    summary="Validate Telemetry Batch (Alias)",
+    tags=["Telemetry"],
+)
+def validate_telemetry_alias(payload: Dict[str, Any]):
+    """Alias for telemetry validation accepting {telemetry: [...]} or {records: [...]}."""
+    telemetry_input = payload.get("telemetry", payload.get("records", payload))
+    df, errors = orchestrator.validate_and_normalize_telemetry(telemetry_input)
+    return TelemetrySubmitResponse(
+        status="valid" if not df.empty else "invalid",
+        valid_record_count=len(df),
+        errors=errors,
+        sample_devices=df["device_id"].unique().tolist() if not df.empty and "device_id" in df.columns else [],
+    )
 
 
 @app.post(
@@ -468,6 +534,27 @@ def get_report(report_id: str):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error reading or deserializing report: {str(exc)}",
         )
+
+
+@app.post(
+    "/api/reports/{report_id}/ask",
+    response_model=AskReportResponse,
+    summary="Ask NetCoop Copilot about a Diagnostic Report",
+    tags=["Reports"],
+)
+def ask_report(report_id: str, payload: AskReportRequest):
+    """
+    Ask NetCoop natural language Copilot to explain a DiagnosticReport.
+    Answers strictly using grounded report telemetry without inventing metrics.
+    """
+    report = get_report(report_id)
+    from copilot.explainer import ask_copilot
+    res = ask_copilot(report, payload.question)
+    return AskReportResponse(
+        answer=res.answer,
+        mode=res.mode,
+        cited_evidence=res.cited_evidence,
+    )
 
 
 @app.get(

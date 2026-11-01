@@ -732,3 +732,54 @@ def test_22_diagnose_via_api_mocked():
         assert rep is None
         assert "offline" in err.lower()
 
+
+def test_23_dashboard_demo_and_actions_recommendations_rendering():
+    """
+    Regression test verifying that dashboard/app.py correctly accesses
+    recommended_corrective_actions / recommendations without raising
+    AttributeError: 'DiagnosticReport' object has no attribute 'recommended_actions'.
+    """
+    from streamlit.testing.v1 import AppTest
+    from data.scenarios import generate_scenario_data
+    from orchestrator.orchestrator import CentralOrchestrator
+
+    # 1. Generate a real DiagnosticReport with recommendations
+    orch = CentralOrchestrator()
+    records = generate_scenario_data("congestion")
+    real_report = orch.run_diagnosis(records, scenario_name="congestion", save_report=False)
+    assert len(real_report.recommended_corrective_actions) > 0
+
+    # 2. Test Streamlit app rendering with real report in session_state
+    app_path = str(Path(__file__).resolve().parent.parent / "dashboard" / "app.py")
+    at = AppTest.from_file(app_path)
+    at.session_state["demo_report"] = real_report
+    at.session_state["diagnostic_report"] = real_report
+    at.session_state["demo_baseline"] = None
+    at.session_state["demo_df"] = pd.DataFrame(records)
+    at.session_state["demo_metric"] = "packet_loss_pct"
+    at.session_state["demo_scenario_active"] = "congestion"
+    at.run(timeout=15)
+    assert len(at.exception) == 0, f"AppTest raised unexpected exceptions: {at.exception}"
+
+    # 3. Test with empty recommendations list safely
+    at_empty = AppTest.from_file(app_path)
+    empty_report = DiagnosticReport(
+        task_id="t_empty_recs",
+        overall_network_health=NetworkHealthStatus.HEALTHY,
+        health_classification="NOMINAL",
+        fault_detected=False,
+        diagnosis_certainty="NOT_APPLICABLE",
+        recommended_corrective_actions=[],
+        recommendations=[],
+        schema_version="2.0.0",
+        summary="Nominal status.",
+    )
+    at_empty.session_state["demo_report"] = empty_report
+    at_empty.session_state["diagnostic_report"] = empty_report
+    at_empty.session_state["demo_baseline"] = None
+    at_empty.session_state["demo_df"] = pd.DataFrame(records)
+    at_empty.session_state["demo_metric"] = "packet_loss_pct"
+    at_empty.session_state["demo_scenario_active"] = "normal"
+    at_empty.run(timeout=15)
+    assert len(at_empty.exception) == 0, f"AppTest raised unexpected exceptions: {at_empty.exception}"
+

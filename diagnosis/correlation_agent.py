@@ -627,6 +627,51 @@ class FaultCorrelationAgent:
                 )
             )
 
+        # =====================================================================
+        # SCENARIO H: Rolling Baseline Anomaly / Silent Degradation
+        # =====================================================================
+        baseline_findings = [f for f in findings if getattr(f, "source_agent", None) == "baseline_detector" or "baseline anomaly" in f.title.lower()]
+        if baseline_findings:
+            base_devs = list({dev for f in baseline_findings for dev in f.affected_devices if dev})
+            base_ev_texts = [e.details for e in evidence if e.details and "rolling baseline" in e.details]
+            if not base_ev_texts:
+                base_ev_texts = [f.description for f in baseline_findings]
+
+            has_confirmed_rule = any(c.confidence >= 0.80 and not c.hypothesis_id.startswith("HYP-BASELINE") for c in candidates)
+
+            if has_confirmed_rule:
+                for c in candidates:
+                    if c.confidence >= 0.80:
+                        c.evidence.extend(base_ev_texts[:2])
+                        c.supporting_symptoms.append("Corroborated by rolling baseline statistical anomaly detector.")
+            else:
+                candidates.append(
+                    CorrelationHypothesis(
+                        hypothesis_id=f"HYP-BASELINE-{uuid.uuid4().hex[:6].upper()}",
+                        title="Silent Performance Degradation (Rolling Baseline Drift)",
+                        probable_root_cause="Silent Performance Degradation (Rolling Baseline Drift)",
+                        category="DEGRADED",
+                        description=(
+                            f"Statistical baseline anomaly detected across {len(base_devs)} device(s): "
+                            f"{baseline_findings[0].description}"
+                        ),
+                        severity="warning",
+                        confidence=0.55,
+                        affected_devices=base_devs or affected_devices,
+                        supporting_findings=[f.title for f in baseline_findings],
+                        supporting_agents=["baseline_detector"],
+                        evidence=base_ev_texts[:5],
+                        uncertainty_explanation=(
+                            "Metrics show sustained statistical deviation from historical baseline without crossing "
+                            "static threshold limits. Operator verification advised."
+                        ),
+                        recommended_investigation=(
+                            "Inspect device telemetry trends, recent configuration changes, and background workload "
+                            "growth causing baseline drift."
+                        ),
+                    )
+                )
+
         # Sort descending by calibrated confidence
         candidates.sort(key=lambda c: c.confidence, reverse=True)
         return candidates

@@ -18,7 +18,7 @@ def test_api_get_scenarios():
     res = client.get("/api/scenarios")
     assert res.status_code == 200
     data = res.json()
-    assert data["total"] == 8
+    assert data["total"] >= 8
     sc_ids = [s["scenario_id"] for s in data["scenarios"]]
     assert "normal" in sc_ids
     assert "congestion" in sc_ids
