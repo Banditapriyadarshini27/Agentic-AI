@@ -108,8 +108,8 @@ export interface DiagnosticReport {
   agent_execution_summary: Record<string, AgentExecutionSummary>;
   validated_findings: Finding[];
   rejected_messages: any[];
-  conflicting_evidence: string[];
-  uncertainty_notes: string[];
+  conflicting_evidence: (string | Record<string, any>)[];
+  uncertainty_notes: (string | Record<string, any>)[];
   warnings: string[];
   errors?: string[];
   limitations: ReportLimitations;

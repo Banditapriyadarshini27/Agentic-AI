@@ -112,7 +112,7 @@ export const Header: React.FC = () => {
 
         {/* Quiet API Heartbeat Status */}
         <div
-          title={apiOnline ? "FastAPI Backend Online (http://127.0.0.1:8000)" : "Local Autonomous Mode"}
+          title={apiOnline ? "FastAPI Multi-Agent Engine Online" : "Local Autonomous Mode"}
           style={{
             display: "flex",
             alignItems: "center",

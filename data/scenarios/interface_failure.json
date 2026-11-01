@@ -2,7 +2,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:13:27.968842Z",
+    "timestamp": "2026-11-01T07:02:19.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 13.0,
@@ -23,7 +23,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:13:37.968842Z",
+    "timestamp": "2026-11-01T07:02:29.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 13.0,
@@ -44,7 +44,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:13:47.968842Z",
+    "timestamp": "2026-11-01T07:02:39.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 13.0,
@@ -65,7 +65,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:13:57.968842Z",
+    "timestamp": "2026-11-01T07:02:49.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,
@@ -86,7 +86,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:07.968842Z",
+    "timestamp": "2026-11-01T07:02:59.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,
@@ -107,7 +107,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:17.968842Z",
+    "timestamp": "2026-11-01T07:03:09.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,
@@ -128,7 +128,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:27.968842Z",
+    "timestamp": "2026-11-01T07:03:19.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,
@@ -149,7 +149,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:37.968842Z",
+    "timestamp": "2026-11-01T07:03:29.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,
@@ -170,7 +170,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:47.968842Z",
+    "timestamp": "2026-11-01T07:03:39.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,
@@ -191,7 +191,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:57.968842Z",
+    "timestamp": "2026-11-01T07:03:49.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,
@@ -212,7 +212,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:15:07.968842Z",
+    "timestamp": "2026-11-01T07:03:59.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,
@@ -233,7 +233,7 @@
   {
     "device_id": "edge-switch-02",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:15:17.968842Z",
+    "timestamp": "2026-11-01T07:04:09.550115Z",
     "location": "Warehouse-B",
     "interface_name": "GigabitEthernet0/24",
     "latency_ms": 190.0,

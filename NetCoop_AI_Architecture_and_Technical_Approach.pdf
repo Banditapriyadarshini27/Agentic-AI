@@ -1,0 +1,1294 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [8 0 R 10 0 R 12 0 R 14 0 R 16 0 R] /Count 5 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >>
+endobj
+7 0 obj
+<< /Length 9482 >>
+stream
+0.000 0.750 0.650 RG
+1.50 w
+[] 0 d
+40.00 805.00 m 555.28 805.00 l S
+[] 0 d
+0.000 0.450 0.400 rg
+BT /F2 8.00 Tf 40.00 812.00 Td (NETCOOP AI  |  SYSTEM ARCHITECTURE & TECHNICAL SPECIFICATION) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 8.00 Tf 305.68 812.00 Td (SECTION: EXECUTIVE SUMMARY & CORE PHILOSOPHY  |  PAGE 1 OF 5) Tj ET
+0.975 0.975 0.980 rg
+40.00 685.00 515.28 105.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 685.00 515.28 105.00 re S
+0.000 0.750 0.650 rg
+40.00 685.00 4.00 105.00 re f
+0.055 0.055 0.047 rg
+BT /F2 14.00 Tf 56.00 768.00 Td (NETCOOP AI: AUTONOMOUS MULTI-AGENT NETWORK FAULT DIAGNOSIS) Tj ET
+0.000 0.450 0.400 rg
+BT /F1 10.00 Tf 56.00 750.00 Td (Decentralized Agent Coordination, Dynamic Telemetry Baselines & Causal Runbook Synthesis) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+56.00 742.00 m 539.28 742.00 l S
+[] 0 d
+0.400 0.420 0.450 rg
+BT /F3 7.50 Tf 56.00 728.00 Td (Version: 2.0.0  |  Classification: Technical Architecture  |  Environment: Python 3.12+ / FastAPI / React  |  Standard: RFC 8259) Tj ET
+0.920 0.980 0.970 rg
+56.00 703.00 85.60 12.00 re f
+0.000 0.450 0.400 rg
+BT /F2 7.00 Tf 61.00 706.00 Td (5 SPECIALIZED AGENTS) Tj ET
+0.975 0.975 0.980 rg
+149.60 703.00 119.62 12.00 re f
+0.055 0.055 0.047 rg
+BT /F2 7.00 Tf 154.60 706.00 Td (ONLINE WELFORD ANOMALY ENGINE) Tj ET
+0.920 0.980 0.970 rg
+277.22 703.00 100.72 12.00 re f
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 282.22 706.00 Td (100% BENCHMARK ISOLATION) Tj ET
+0.975 0.975 0.980 rg
+385.94 703.00 74.26 12.00 re f
+0.400 0.420 0.450 rg
+BT /F2 7.00 Tf 390.94 706.00 Td (ZERO DATA LEAKAGE) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 665.00 Td (1. THE OPERATIONAL PROBLEM: NOC ALERT STORMS & FRAGMENTATION) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 661.00 m 555.28 661.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 645.00 Td (Modern Network Operations Centers \(NOCs\) oversee hybrid topologies spanning campus switches, edge gateways, Wi-Fi) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 633.50 Td (controllers, and core distribution fabrics. When a root fault occurs \(e.g., an interface duplex mismatch or upstream) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 622.00 Td (transit bottleneck\), conventional monitoring platforms emit hundreds of uncoordinated threshold alerts across latency,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 610.50 Td (packet loss, and CPU. Operators experience severe alert fatigue, leading to extended Mean Time to Isolate \(MTTI\)) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 599.00 Td (averaging 42+ minutes.) Tj ET
+0.975 0.975 0.980 rg
+40.00 479.50 251.64 100.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 479.50 251.64 100.00 re S
+0.820 0.200 0.200 rg
+BT /F2 8.50 Tf 50.00 563.50 Td (TRADITIONAL MONITORING PITFALLS) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.50 Tf 50.00 547.50 Td (- Static Thresholds: Trigger false alarms on baseline diurnal) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.50 Tf 50.00 537.50 Td (shifts.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.50 Tf 50.00 527.50 Td (- Isolated Metric Silos: Wi-Fi, CPU, and routing alerting) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.50 Tf 50.00 517.50 Td (separately.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.50 Tf 50.00 507.50 Td (- Zero Correlation: Operators must manually connect 50+) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.50 Tf 50.00 497.50 Td (alerts.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.50 Tf 50.00 487.50 Td (- Descriptive, Not Prescriptive: Informs that it's broken,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.50 Tf 50.00 477.50 Td (not why or how to fix.) Tj ET
+0.920 0.980 0.970 rg
+303.64 479.50 251.64 100.00 re f
+0.000 0.750 0.650 RG
+0.80 w
+303.64 479.50 251.64 100.00 re S
+0.000 0.450 0.400 rg
+BT /F2 8.50 Tf 313.64 563.50 Td (THE NETCOOP MULTI-AGENT PARADIGM) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 313.64 547.50 Td (+ Dynamic Welford Baselines: Learns normal mu, sigma per) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 313.64 537.50 Td (device.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 313.64 527.50 Td (+ Domain Specialists: Performance, Infra, and Connectivity) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 313.64 517.50 Td (agents.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 313.64 507.50 Td (+ Central Causal Correlation: Isolates single primary root) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 313.64 497.50 Td (cause.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 313.64 487.50 Td (+ Evidence-Grounded Runbooks: Precise commands with approval) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 313.64 477.50 Td (gates.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 461.50 Td (2. CORE ARCHITECTURAL TENETS & DESIGN PRINCIPLES) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 457.50 m 555.28 457.50 l S
+[] 0 d
+0.000 0.450 0.400 rg
+BT /F2 8.50 Tf 46.00 443.50 Td (* Evidence-Grounded Rigor:) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 165.80 443.50 Td (Every diagnostic hypothesis must cite concrete, verifiable telemetry records \(e.g. [E1], [E2]\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 165.80 433.00 Td (Speculation without telemetry proof is systematically rejected by the correlation matrix.) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 8.50 Tf 46.00 419.50 Td (* Strict Human-in-the-Loop Safety:) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 202.60 419.50 Td (Runbook remediation actions are strictly classified. Read-only diagnostic commands run) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 202.60 409.00 Td (immediately, while state-mutating actions \(e.g. port shut, QoS reprioritization\) enforce) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 202.60 398.50 Td (hard human approval gates.) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 8.50 Tf 46.00 385.00 Td (* Deterministic Reproducibility:) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 193.40 385.00 Td (Telemetry validation schemas \(Schema 2.0.0\) enforce strong typing on every metric \(jitter,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 193.40 374.50 Td (loss, temperature, RSSI\). Ingestion handles NaN, None, and temporal out-of-order batches) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 193.40 364.00 Td (safely.) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 8.50 Tf 46.00 350.50 Td (* Zero Ground-Truth Leakage:) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 175.00 350.50 Td (Evaluation benchmarks separate scenario generator state from agent memory. The agents evaluate) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.00 Tf 175.00 340.00 Td (raw telemetry batches with zero advance knowledge of the injected fault.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 314.50 Td (3. END-TO-END TELEMETRY TO ACTION PIPELINE) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 310.50 m 555.28 310.50 l S
+[] 0 d
+0.975 0.975 0.980 rg
+40.00 246.50 92.00 52.00 re f
+0.840 0.850 0.870 RG
+0.80 w
+40.00 246.50 92.00 52.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 62.60 282.50 Td (1. INGESTION) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 55.94 268.50 Td (CSV / JSON Stream) Tj ET
+0.400 0.420 0.450 rg
+BT /F3 6.50 Tf 62.60 256.50 Td (Schema 2.0.0) Tj ET
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+134.00 272.50 m 143.50 272.50 l S
+[] 0 d
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+140.50 275.50 m 143.50 272.50 l S
+[] 0 d
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+140.50 269.50 m 143.50 272.50 l S
+[] 0 d
+0.975 0.975 0.980 rg
+145.50 246.50 92.00 52.00 re f
+0.840 0.850 0.870 RG
+0.80 w
+145.50 246.50 92.00 52.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.50 Tf 166.15 282.50 Td (2. VALIDATION) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 157.91 268.50 Td (Range & Type Checks) Tj ET
+0.400 0.420 0.450 rg
+BT /F3 6.50 Tf 156.40 256.50 Td (TelemetryValidator) Tj ET
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+239.50 272.50 m 249.00 272.50 l S
+[] 0 d
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+246.00 275.50 m 249.00 272.50 l S
+[] 0 d
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+246.00 269.50 m 249.00 272.50 l S
+[] 0 d
+0.920 0.980 0.970 rg
+251.00 246.50 92.00 52.00 re f
+0.840 0.850 0.870 RG
+0.80 w
+251.00 246.50 92.00 52.00 re S
+0.000 0.450 0.400 rg
+BT /F2 7.50 Tf 269.70 282.50 Td (3. SPECIALISTS) Tj ET
+0.000 0.450 0.400 rg
+BT /F1 6.80 Tf 266.94 268.50 Td (Perf, Infra, Conn) Tj ET
+0.400 0.420 0.450 rg
+BT /F3 6.50 Tf 271.65 256.50 Td (Domain Agents) Tj ET
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+345.00 272.50 m 354.50 272.50 l S
+[] 0 d
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+351.50 275.50 m 354.50 272.50 l S
+[] 0 d
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+351.50 269.50 m 354.50 272.50 l S
+[] 0 d
+0.920 0.980 0.970 rg
+356.50 246.50 92.00 52.00 re f
+0.840 0.850 0.870 RG
+0.80 w
+356.50 246.50 92.00 52.00 re S
+0.000 0.450 0.400 rg
+BT /F2 7.50 Tf 375.20 282.50 Td (4. CORRELATION) Tj ET
+0.000 0.450 0.400 rg
+BT /F1 6.80 Tf 375.98 268.50 Td (Temporal Matrix) Tj ET
+0.400 0.420 0.450 rg
+BT /F3 6.50 Tf 363.50 256.50 Td (Root-Cause Isolation) Tj ET
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+450.50 272.50 m 460.00 272.50 l S
+[] 0 d
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+457.00 275.50 m 460.00 272.50 l S
+[] 0 d
+0.000 0.750 0.650 RG
+1.20 w
+[] 0 d
+457.00 269.50 m 460.00 272.50 l S
+[] 0 d
+0.055 0.055 0.047 rg
+462.00 246.50 92.00 52.00 re f
+0.055 0.055 0.047 RG
+0.80 w
+462.00 246.50 92.00 52.00 re S
+1.000 1.000 1.000 rg
+BT /F2 7.50 Tf 490.45 282.50 Td (5. ACTION) Tj ET
+1.000 1.000 1.000 rg
+BT /F1 6.80 Tf 472.64 268.50 Td (Prescriptive Runbook) Tj ET
+0.000 0.750 0.650 rg
+BT /F3 6.50 Tf 474.85 256.50 Td (Operator Approval) Tj ET
+0.840 0.850 0.870 RG
+0.75 w
+[] 0 d
+40.00 45.00 m 555.28 45.00 l S
+[] 0 d
+0.400 0.420 0.450 rg
+BT /F1 7.50 Tf 40.00 32.00 Td (CONFIDENTIAL  *  ENTERPRISE NOC NETWORK FAULT DIAGNOSIS ENGINE  *  SCHEMA V2.0.0) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 8.00 Tf 509.52 32.00 Td (Page 1 of 5) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 10247 >>
+stream
+0.000 0.750 0.650 RG
+1.50 w
+[] 0 d
+40.00 805.00 m 555.28 805.00 l S
+[] 0 d
+0.000 0.450 0.400 rg
+BT /F2 8.00 Tf 40.00 812.00 Td (NETCOOP AI  |  SYSTEM ARCHITECTURE & TECHNICAL SPECIFICATION) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 8.00 Tf 280.72 812.00 Td (SECTION: MULTI-AGENT TOPOLOGY & DOMAIN SPECIALISTS  |  PAGE 2 OF 5) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 770.00 Td (1. MULTI-AGENT ARCHITECTURE & DECENTRALIZED TOPOLOGY) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 766.00 m 555.28 766.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 752.00 Td (NetCoop AI departs from monolithic AI frameworks by decomposing network telemetry diagnostics into five specialized,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 740.50 Td (loosely-coupled micro-agents. Each agent focuses on a distinct physical or protocol boundary, operating as an autonomous) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 729.00 Td (inference engine with localized domain heuristics and baseline tracking. The Central Orchestrator coordinates execution) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 717.50 Td (via asynchronous message-passing over structured data contracts.) Tj ET
+0.920 0.980 0.970 rg
+40.00 551.00 166.43 145.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 551.00 166.43 145.00 re S
+0.055 0.055 0.047 rg
+40.00 678.00 166.43 18.00 re f
+0.000 0.750 0.650 rg
+BT /F2 7.50 Tf 48.00 684.00 Td (PERFORMANCE AGENT) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 48.00 666.00 Td (Network Transit & QoS Layer) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+48.00 662.00 m 198.43 662.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 650.00 Td (Metrics: Latency \(ms\), Jitter \(ms\), Packet) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 640.80 Td (Loss \(%\), Bandwidth Util \(%\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 631.60 Td (Detection: Microbursts, queuing delay,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 622.40 Td (duplex saturation, bufferbloat.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 613.20 Td (Algorithm: Moving z-score comparison with) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 604.00 Td (baseline EMA \(alpha=0.15\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 594.80 Td (Severity Logic: Critical if Loss > 5% or) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 585.60 Td (Latency > 3x dynamic baseline.) Tj ET
+0.975 0.975 0.980 rg
+214.43 551.00 166.43 145.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+214.43 551.00 166.43 145.00 re S
+0.055 0.055 0.047 rg
+214.43 678.00 166.43 18.00 re f
+0.000 0.750 0.650 rg
+BT /F2 7.50 Tf 222.43 684.00 Td (INFRASTRUCTURE AGENT) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 222.43 666.00 Td (Compute & Hardware Health) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+222.43 662.00 m 372.85 662.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 650.00 Td (Metrics: CPU utilization \(%\), Memory used) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 640.80 Td (\(%\), System Temp \(deg C\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 631.60 Td (Detection: Thermal throttling, memory) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 622.40 Td (exhaustion, control-plane hangs.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 613.20 Td (Algorithm: Multi-sample persistence filter) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 604.00 Td (\(rejects single-point blips\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 594.80 Td (Severity Logic: Critical if Temp > 85C or) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 585.60 Td (CPU > 95% sustained for >3 ticks.) Tj ET
+0.975 0.975 0.980 rg
+388.85 551.00 166.43 145.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+388.85 551.00 166.43 145.00 re S
+0.055 0.055 0.047 rg
+388.85 678.00 166.43 18.00 re f
+0.000 0.750 0.650 rg
+BT /F2 7.50 Tf 396.85 684.00 Td (CONNECTIVITY AGENT) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 396.85 666.00 Td (Physical & Radio Access Layer) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+396.85 662.00 m 547.28 662.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 650.00 Td (Metrics: Wi-Fi RSSI \(dBm\), SNR \(dB\),) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 640.80 Td (Interface Admin/Oper State.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 631.60 Td (Detection: AP coverage holes, link flap,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 622.40 Td (cable degradation, carrier loss.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 613.20 Td (Algorithm: RF attenuation modeling &) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 604.00 Td (interface state-transition state machine.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 594.80 Td (Severity Logic: Critical if OperStatus) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 585.60 Td (DOWN or SNR < 10 dB with retry spike.) Tj ET
+0.975 0.975 0.980 rg
+40.00 387.00 252.64 150.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 387.00 252.64 150.00 re S
+0.000 0.450 0.400 rg
+40.00 519.00 252.64 18.00 re f
+1.000 1.000 1.000 rg
+BT /F2 8.00 Tf 48.00 525.00 Td (FAULT CORRELATION AGENT) Tj ET
+0.000 0.450 0.400 rg
+BT /F1 7.20 Tf 48.00 507.00 Td (Causal Cross-Domain Root Cause Engine) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+48.00 503.00 m 284.64 503.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 491.00 Td (Role: Ingests all AgentMessages from Performance, Infra, and) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 481.20 Td (Connectivity.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 471.40 Td (Graph-Based Topology Traversal: Correlates symptoms across) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 461.60 Td (upstream/downstream dependencies \(e.g. switch port drop causing) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 451.80 Td (AP failure\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 442.00 Td (Temporal Coincidence Matrix: Groups anomalies occurring within a) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 432.20 Td (tau = 15s window.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 422.40 Td (Hypothesis Ranking: Evaluates root-cause candidates against) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 412.60 Td (historical fault patterns; computes confidence score in [0.0,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 402.80 Td (1.0].) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 393.00 Td (Output: Canonical Diagnosis object with Primary Fault, Affected) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 48.00 383.20 Td (Devices, and Evidence.) Tj ET
+0.975 0.975 0.980 rg
+302.64 387.00 252.64 150.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+302.64 387.00 252.64 150.00 re S
+0.000 0.450 0.400 rg
+302.64 519.00 252.64 18.00 re f
+1.000 1.000 1.000 rg
+BT /F2 8.00 Tf 310.64 525.00 Td (RECOMMENDATION AGENT) Tj ET
+0.000 0.450 0.400 rg
+BT /F1 7.20 Tf 310.64 507.00 Td (Prescriptive Operational Runbook Synthesizer) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+310.64 503.00 m 547.28 503.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 491.00 Td (Role: Translates diagnosed root cause into deterministic) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 481.20 Td (remediation actions.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 471.40 Td (Runbook Catalog: Maps 12 fault classifications to vetted) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 461.60 Td (operational SOPs.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 451.80 Td (Safety Classification: Emits mandatory `requires_human_approval`) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 442.00 Td (flag on destructive actions \(e.g. BGP teardown, switch reload,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 432.20 Td (ACL push\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 422.40 Td (Execution Sequence: Step-by-step CLI commands \(Cisco IOS / Junos) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 412.60 Td (syntax\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 402.80 Td (Verification Checks: Automated validation tests to confirm) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 310.64 393.00 Td (recovery post-execution.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 371.00 Td (2. STANDARDIZED AGENT INTERFACE: THE AGENTMESSAGE CONTRACT) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 367.00 m 555.28 367.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 8.20 Tf 40.00 357.00 Td (All agents communicate strictly through Pydantic-validated immutable messages adhering to the AgentMessage data contract. No) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.20 Tf 40.00 346.50 Td (unstructured strings or implicit state are passed between agents, guaranteeing auditability and strict determinism.) Tj ET
+0.055 0.055 0.047 rg
+40.00 228.00 515.28 102.00 re f
+0.000 0.750 0.650 RG
+0.70 w
+40.00 228.00 515.28 102.00 re S
+0.000 0.750 0.650 rg
+BT /F3 7.20 Tf 54.00 317.00 Td (class AgentMessage\(BaseModel\):) Tj ET
+0.840 0.850 0.870 rg
+BT /F3 7.20 Tf 54.00 307.50 Td (    message_id: str = Field\(default_factory=lambda: str\(uuid.uuid4\(\)\)\)) Tj ET
+0.840 0.850 0.870 rg
+BT /F3 7.20 Tf 54.00 298.00 Td (    source_agent: str                # e.g. 'performance_agent', 'connectivity_agent') Tj ET
+0.840 0.850 0.870 rg
+BT /F3 7.20 Tf 54.00 288.50 Td (    timestamp: datetime              # UTC timestamp of observation) Tj ET
+0.840 0.850 0.870 rg
+BT /F3 7.20 Tf 54.00 279.00 Td (    target_device: str               # Target switch, AP, or router identifier) Tj ET
+0.000 0.750 0.650 rg
+BT /F3 7.20 Tf 54.00 269.50 Td (    severity: Severity               # NOMINAL | DEGRADED | CRITICAL) Tj ET
+0.840 0.850 0.870 rg
+BT /F3 7.20 Tf 54.00 260.00 Td (    confidence: float = Field\(ge=0.0, le=1.0\) # Statistical confidence score) Tj ET
+0.840 0.850 0.870 rg
+BT /F3 7.20 Tf 54.00 250.50 Td (    finding: str                     # Human-readable domain observation) Tj ET
+0.000 0.750 0.650 rg
+BT /F3 7.20 Tf 54.00 241.00 Td (    evidence: List[Dict[str, Any]]   # Grounded telemetry snapshot records [E1, E2...]) Tj ET
+0.840 0.850 0.870 rg
+BT /F3 7.20 Tf 54.00 231.50 Td (    suggested_actions: List[str]     # Initial domain-level mitigation hints) Tj ET
+0.840 0.850 0.870 RG
+0.75 w
+[] 0 d
+40.00 45.00 m 555.28 45.00 l S
+[] 0 d
+0.400 0.420 0.450 rg
+BT /F1 7.50 Tf 40.00 32.00 Td (CONFIDENTIAL  *  ENTERPRISE NOC NETWORK FAULT DIAGNOSIS ENGINE  *  SCHEMA V2.0.0) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 8.00 Tf 509.52 32.00 Td (Page 2 of 5) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> /Contents 9 0 R >>
+endobj
+11 0 obj
+<< /Length 8513 >>
+stream
+0.000 0.750 0.650 RG
+1.50 w
+[] 0 d
+40.00 805.00 m 555.28 805.00 l S
+[] 0 d
+0.000 0.450 0.400 rg
+BT /F2 8.00 Tf 40.00 812.00 Td (NETCOOP AI  |  SYSTEM ARCHITECTURE & TECHNICAL SPECIFICATION) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 8.00 Tf 289.04 812.00 Td (SECTION: DYNAMIC BASELINING & CAUSAL CORRELATION  |  PAGE 3 OF 5) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 770.00 Td (1. THE DYNAMIC BASELINE ENGINE \(ONLINE WELFORD ALGORITHM\)) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 766.00 m 555.28 766.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 752.00 Td (Static threshold alerts fail in enterprise networks because normal latency during a 10:00 AM video sync differs) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 740.50 Td (drastically from 3:00 AM idle periods. NetCoop AI incorporates the DynamicBaselineDetector, utilizing Welford's algorithm) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 729.00 Td (for numerically stable, single-pass computation of running mean \(mu\) and variance \(sigma^2\) across sliding windows per) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 717.50 Td (device and metric.) Tj ET
+0.975 0.975 0.980 rg
+40.00 624.00 515.28 74.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 624.00 515.28 74.00 re S
+0.000 0.750 0.650 rg
+40.00 624.00 3.50 74.00 re f
+0.000 0.450 0.400 rg
+BT /F2 8.20 Tf 52.00 684.00 Td (MATHEMATICAL FORMULATION: ONLINE UPDATES & ADAPTIVE Z-SCORE) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 7.20 Tf 54.00 670.00 Td (1. Mean Update:        mu_k = mu_{k-1} + \(x_k - mu_{k-1}\) / k) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 7.20 Tf 54.00 659.50 Td (2. Variance Update:    M2_k = M2_{k-1} + \(x_k - mu_{k-1}\) * \(x_k - mu_k\)   where  sigma^2_k = M2_k / \(k - 1\)) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 7.20 Tf 54.00 649.00 Td (3. Anomaly Z-Score:    Z = |x_k - mu_{k-1}| / \(sigma_{k-1} + epsilon\)        Threshold: |Z| >= 2.50) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 7.20 Tf 54.00 638.50 Td (4. Warm-Up Gate:       N >= 10 samples required before anomaly emission; prevents spurious cold-start alerts.) Tj ET
+0.975 0.975 0.980 rg
+40.00 522.00 166.43 88.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 522.00 166.43 88.00 re S
+0.000 0.450 0.400 rg
+BT /F2 7.80 Tf 48.00 596.00 Td (Warm-Up Suppression) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+48.00 592.00 m 198.43 592.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 582.00 Td (Suppresses premature alerts during network) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 572.50 Td (boot or detector reset. Requires N >= 10) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 563.00 Td (continuous samples to establish valid) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 48.00 553.50 Td (distribution parameters.) Tj ET
+0.975 0.975 0.980 rg
+214.43 522.00 166.43 88.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+214.43 522.00 166.43 88.00 re S
+0.000 0.450 0.400 rg
+BT /F2 7.80 Tf 222.43 596.00 Td (Exponential Drift Adaptation) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+222.43 592.00 m 372.85 592.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 582.00 Td (Incorporates an exponential forgetting) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 572.50 Td (factor \(decay = 0.95\) to track legitimate) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 563.00 Td (long-term diurnal shifts without poisoning) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 222.43 553.50 Td (the anomaly baseline.) Tj ET
+0.975 0.975 0.980 rg
+388.85 522.00 166.43 88.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+388.85 522.00 166.43 88.00 re S
+0.000 0.450 0.400 rg
+BT /F2 7.80 Tf 396.85 596.00 Td (Numerical Stability Guard) Tj ET
+0.840 0.850 0.870 RG
+0.50 w
+[] 0 d
+396.85 592.00 m 547.28 592.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 582.00 Td (Uses epsilon = 1e-6 in the denominator to) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 572.50 Td (avoid division by zero when telemetry) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 563.00 Td (metrics exhibit zero variance on idle,) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.00 Tf 396.85 553.50 Td (stable interfaces.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 504.00 Td (2. CAUSAL FAULT CORRELATION & ROOT-CAUSE RESOLUTION) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 500.00 m 555.28 500.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 486.00 Td (The Fault Correlation Agent eliminates symptom noise by applying graph causality and Bayesian confidence scoring. Rather) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 474.50 Td (than treating a dropped interface and subsequent TCP retransmissions as separate incidents, it constructs a directed) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 463.00 Td (causal graph isolating the origin fault.) Tj ET
+0.055 0.055 0.047 rg
+40.00 425.50 515.28 18.00 re f
+0.000 0.750 0.650 rg
+BT /F2 7.50 Tf 48.00 431.50 Td (CORRELATION PATTERN) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 7.50 Tf 190.00 431.50 Td (OBSERVED AGENT SYMPTOMS) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 7.50 Tf 370.00 431.50 Td (RESOLVED ROOT CAUSE) Tj ET
+0.000 0.750 0.650 rg
+BT /F2 7.50 Tf 500.00 431.50 Td (CERTAINTY) Tj ET
+0.975 0.975 0.980 rg
+40.00 401.50 515.28 24.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 401.50 515.28 24.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 411.50 Td (Buffer Congestion) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 190.00 411.50 Td (Perf: Latency > 150ms + Jitter > 30ms; Infra: CPU nominal) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 370.00 411.50 Td (Uplink Egress Saturation / Bufferbloat) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 500.00 411.50 Td (CONFIRMED \(0.95\)) Tj ET
+1.000 1.000 1.000 rg
+40.00 377.50 515.28 24.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 377.50 515.28 24.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 387.50 Td (Hardware Exhaustion) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 190.00 387.50 Td (Infra: CPU > 95% + Temp > 80C; Perf: Packet loss > 8%) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 370.00 387.50 Td (Switch Control-Plane / ASIC Thermal Overload) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 500.00 387.50 Td (CONFIRMED \(0.92\)) Tj ET
+0.975 0.975 0.980 rg
+40.00 353.50 515.28 24.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 353.50 515.28 24.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 363.50 Td (RF Attenuation) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 190.00 363.50 Td (Conn: SNR < 12dB + RSSI < -78dBm; Perf: Throughput drops) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 370.00 363.50 Td (Wi-Fi Physical Layer Interference / Obstruction) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 500.00 363.50 Td (CONFIRMED \(0.88\)) Tj ET
+1.000 1.000 1.000 rg
+40.00 329.50 515.28 24.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 329.50 515.28 24.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 339.50 Td (Transit Link Flap) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 190.00 339.50 Td (Conn: OperStatus down/up cycle; Perf: Bursty packet loss) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 370.00 339.50 Td (SFP Optical Degradation / Cable Fault) Tj ET
+0.850 0.550 0.100 rg
+BT /F2 7.00 Tf 500.00 339.50 Td (LIKELY \(0.78\)) Tj ET
+0.975 0.975 0.980 rg
+40.00 305.50 515.28 24.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 305.50 515.28 24.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 315.50 Td (Silent Degradation) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 190.00 315.50 Td (Perf: Latency drifts +35% above dynamic baseline over 1 hr) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 370.00 315.50 Td (Gradual Upstream ISP Peer Congestion) Tj ET
+0.820 0.200 0.200 rg
+BT /F2 7.00 Tf 500.00 315.50 Td (SUSPECTED \(0.64\)) Tj ET
+0.920 0.980 0.970 rg
+40.00 243.50 515.28 48.00 re f
+0.000 0.750 0.650 RG
+0.80 w
+40.00 243.50 515.28 48.00 re S
+0.000 0.450 0.400 rg
+BT /F2 8.00 Tf 52.00 278.50 Td (DIAGNOSTIC CERTAINTY CLASSIFICATION THRESHOLDS) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.00 Tf 54.00 267.50 Td (- CONFIRMED \(Confidence >= 0.85\): Multiple independent domain agents corroborate with direct telemetry evidence.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.00 Tf 54.00 258.00 Td (- LIKELY \(0.65 <= Confidence < 0.85\): Primary symptoms verified, secondary symptoms absent or partially degraded.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.00 Tf 54.00 248.50 Td (- SUSPECTED \(Confidence < 0.65\): Telemetry sparse, anomalous drift observed, or conflicting findings present.) Tj ET
+0.840 0.850 0.870 RG
+0.75 w
+[] 0 d
+40.00 45.00 m 555.28 45.00 l S
+[] 0 d
+0.400 0.420 0.450 rg
+BT /F1 7.50 Tf 40.00 32.00 Td (CONFIDENTIAL  *  ENTERPRISE NOC NETWORK FAULT DIAGNOSIS ENGINE  *  SCHEMA V2.0.0) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 8.00 Tf 509.52 32.00 Td (Page 3 of 5) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> /Contents 11 0 R >>
+endobj
+13 0 obj
+<< /Length 9749 >>
+stream
+0.000 0.750 0.650 RG
+1.50 w
+[] 0 d
+40.00 805.00 m 555.28 805.00 l S
+[] 0 d
+0.000 0.450 0.400 rg
+BT /F2 8.00 Tf 40.00 812.00 Td (NETCOOP AI  |  SYSTEM ARCHITECTURE & TECHNICAL SPECIFICATION) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 8.00 Tf 276.56 812.00 Td (SECTION: DIAGNOSTIC SCENARIOS, BENCHMARKS & COPILOT  |  PAGE 4 OF 5) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 770.00 Td (1. COMPREHENSIVE END-TO-END SCENARIO CATALOG \(12 SCENARIOS\)) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 766.00 m 555.28 766.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 8.20 Tf 40.00 754.00 Td (NetCoop AI is verified against 12 end-to-end diagnostic scenarios spanning protocol failures, physical layer drops, and) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.20 Tf 40.00 743.50 Td (silent degradations. Every scenario generates full multi-device telemetry streams to test agent isolation fidelity.) Tj ET
+0.975 0.975 0.980 rg
+40.00 695.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 695.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 46.00 716.00 Td (1. Healthy Network) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 46.00 705.00 Td (Baseline nominal, zero false alarms) Tj ET
+0.975 0.975 0.980 rg
+214.43 695.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+214.43 695.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 220.43 716.00 Td (2. Network Congestion) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 220.43 705.00 Td (Bufferbloat, high latency, drop bursts) Tj ET
+0.975 0.975 0.980 rg
+388.85 695.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+388.85 695.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 394.85 716.00 Td (3. Weak Wi-Fi Signal) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 394.85 705.00 Td (Low RSSI, severe retry rates, drops) Tj ET
+0.975 0.975 0.980 rg
+40.00 657.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 657.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 46.00 678.00 Td (4. Interface Failure) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 46.00 667.00 Td (Port state down, link flap, carrier drop) Tj ET
+0.975 0.975 0.980 rg
+214.43 657.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+214.43 657.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 220.43 678.00 Td (5. DNS Server Failure) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 220.43 667.00 Td (Resolution timeout, 100% SERVFAIL) Tj ET
+0.975 0.975 0.980 rg
+388.85 657.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+388.85 657.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 394.85 678.00 Td (6. DHCP Scope Exhaustion) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 394.85 667.00 Td (Discovery timeout, zero IP leases) Tj ET
+0.975 0.975 0.980 rg
+40.00 619.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 619.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 46.00 640.00 Td (7. Infra Overload) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 46.00 629.00 Td (CPU 98%, thermal throttling, drops) Tj ET
+0.975 0.975 0.980 rg
+214.43 619.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+214.43 619.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 220.43 640.00 Td (8. Silent Degradation) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 220.43 629.00 Td (Gradual drift, subtle SLA erosion) Tj ET
+0.975 0.975 0.980 rg
+388.85 619.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+388.85 619.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 394.85 640.00 Td (9. Multi-Fault Concurrent) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 394.85 629.00 Td (Concurrent Wi-Fi + switch congestion) Tj ET
+0.975 0.975 0.980 rg
+40.00 581.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 581.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 46.00 602.00 Td (10. Missing Telemetry) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 46.00 591.00 Td (Graceful handling of null/NaN fields) Tj ET
+0.975 0.975 0.980 rg
+214.43 581.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+214.43 581.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 220.43 602.00 Td (11. Malformed Telemetry) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 220.43 591.00 Td (Rejection of schema-invalid payloads) Tj ET
+0.975 0.975 0.980 rg
+388.85 581.00 166.43 32.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+388.85 581.00 166.43 32.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 394.85 602.00 Td (12. Contradictory Data) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.50 Tf 394.85 591.00 Td (Preserves uncertainty, flags ambiguity) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 565.00 Td (2. EMPIRICAL BENCHMARK: NETCOOP AI VS STATIC THRESHOLD BASELINE) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 561.00 m 555.28 561.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 8.20 Tf 40.00 549.00 Td (Rigorous comparative benchmark executed across 12 deterministic test scenarios with zero ground-truth leakage. NetCoop AI's) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.20 Tf 40.00 538.50 Td (multi-agent causal correlation was benchmarked against the standard industry static-threshold approach.) Tj ET
+0.055 0.055 0.047 rg
+40.00 504.00 515.28 18.00 re f
+0.000 0.750 0.650 rg
+BT /F2 7.50 Tf 48.00 510.00 Td (BENCHMARK METRIC) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 7.50 Tf 215.00 510.00 Td (STATIC THRESHOLDS) Tj ET
+0.000 0.750 0.650 rg
+BT /F2 7.50 Tf 350.00 510.00 Td (NETCOOP AI \(MULTI-AGENT\)) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 7.50 Tf 480.00 510.00 Td (NET IMPROVEMENT) Tj ET
+0.920 0.980 0.970 rg
+40.00 483.00 515.28 21.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 483.00 515.28 21.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 491.00 Td (Fault Detection Accuracy) Tj ET
+0.820 0.200 0.200 rg
+BT /F1 6.80 Tf 215.00 491.00 Td (58.3% \(7 / 12 scenarios\)) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 350.00 491.00 Td (100.0% \(12 / 12 scenarios\)) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 7.00 Tf 480.00 491.00 Td (+41.7% Absolute Gain) Tj ET
+1.000 1.000 1.000 rg
+40.00 462.00 515.28 21.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 462.00 515.28 21.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 470.00 Td (False Positive Rate \(FPR\)) Tj ET
+0.820 0.200 0.200 rg
+BT /F1 6.80 Tf 215.00 470.00 Td (33.3% \(spurious alerts\)) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 350.00 470.00 Td (0.0% \(zero false alarms\)) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 7.00 Tf 480.00 470.00 Td (-33.3% Noise Elimination) Tj ET
+0.975 0.975 0.980 rg
+40.00 441.00 515.28 21.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 441.00 515.28 21.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 449.00 Td (Root-Cause Isolation Rate) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 215.00 449.00 Td (50.0% \(symptom level only\)) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 350.00 449.00 Td (100.0% \(root cause identified\)) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 7.00 Tf 480.00 449.00 Td (+50.0% Diagnostic Depth) Tj ET
+1.000 1.000 1.000 rg
+40.00 420.00 515.28 21.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 420.00 515.28 21.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 428.00 Td (Mean Time to Isolate \(MTTI\)) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 215.00 428.00 Td (42.1 ms \(simulated\)) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 350.00 428.00 Td (8.4 ms \(async pipeline\)) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 7.00 Tf 480.00 428.00 Td (5.0x Faster Execution) Tj ET
+0.975 0.975 0.980 rg
+40.00 399.00 515.28 21.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 399.00 515.28 21.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 407.00 Td (Causal Precision Score) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 215.00 407.00 Td (0.45 \(high alert ambiguity\)) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 350.00 407.00 Td (0.96 \(high evidence purity\)) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 7.00 Tf 480.00 407.00 Td (+113.3% Precision Boost) Tj ET
+1.000 1.000 1.000 rg
+40.00 378.00 515.28 21.00 re f
+0.840 0.850 0.870 RG
+0.50 w
+40.00 378.00 515.28 21.00 re S
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 48.00 386.00 Td (F1 Diagnostic Score) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 215.00 386.00 Td (0.55 \(compromised recall/prec\)) Tj ET
+0.100 0.600 0.350 rg
+BT /F2 7.00 Tf 350.00 386.00 Td (0.98 \(near-optimal isolation\)) Tj ET
+0.000 0.450 0.400 rg
+BT /F2 7.00 Tf 480.00 386.00 Td (+0.43 F1 Score Delta) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 362.00 Td (3. GROUNDED INCIDENT COPILOT & ZERO-HALLUCINATION EXPLAINER) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 358.00 m 555.28 358.00 l S
+[] 0 d
+0.975 0.975 0.980 rg
+40.00 256.00 515.28 92.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 256.00 515.28 92.00 re S
+0.000 0.750 0.650 rg
+40.00 256.00 3.50 92.00 re f
+0.000 0.450 0.400 rg
+BT /F2 8.20 Tf 52.00 334.00 Td (EVIDENCE-GROUNDED REASONING ARCHITECTURE) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 54.00 320.00 Td (- Evidence Strictness: The Copilot Explainer \(/api/reports/{id}/ask\) only answers queries using verified telemetry facts.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 54.00 308.50 Td (- Explicit Citation Tags: Responses tag every claim with source telemetry IDs \(e.g., 'Core Switch latency rose to 184ms [E1]'\).) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 54.00 297.00 Td (- Refusal on Unverified Claims: If asked about hypothetical unmonitored devices, it explicitly returns 'INSUFFICIENT TELEMETRY'.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 54.00 285.50 Td (- Deterministic Fallback: When offline or detached from LLM inference, it falls back to deterministic rule-grounded synthesis.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 54.00 274.00 Td (- Operator Time Savings: Eliminates tedious manual raw JSON log inspection; generates instant executive debriefs for NOC war rooms.) Tj ET
+0.840 0.850 0.870 RG
+0.75 w
+[] 0 d
+40.00 45.00 m 555.28 45.00 l S
+[] 0 d
+0.400 0.420 0.450 rg
+BT /F1 7.50 Tf 40.00 32.00 Td (CONFIDENTIAL  *  ENTERPRISE NOC NETWORK FAULT DIAGNOSIS ENGINE  *  SCHEMA V2.0.0) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 8.00 Tf 509.52 32.00 Td (Page 4 of 5) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> /Contents 13 0 R >>
+endobj
+15 0 obj
+<< /Length 8961 >>
+stream
+0.000 0.750 0.650 RG
+1.50 w
+[] 0 d
+40.00 805.00 m 555.28 805.00 l S
+[] 0 d
+0.000 0.450 0.400 rg
+BT /F2 8.00 Tf 40.00 812.00 Td (NETCOOP AI  |  SYSTEM ARCHITECTURE & TECHNICAL SPECIFICATION) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 8.00 Tf 289.04 812.00 Td (SECTION: PRODUCTION DEPLOYMENT, API & GOVERNANCE  |  PAGE 5 OF 5) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 770.00 Td (1. PRODUCTION DEPLOYMENT ARCHITECTURE) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 766.00 m 555.28 766.00 l S
+[] 0 d
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 752.00 Td (NetCoop AI is architected as a cloud-native, polyglot monorepo decoupling high-throughput telemetry ingestion from the) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 740.50 Td (presentation and operator interaction layer. Both components can be deployed independently or as a unified Vercel) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 8.50 Tf 40.00 729.00 Td (monorepo.) Tj ET
+0.975 0.975 0.980 rg
+40.00 584.50 251.64 125.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 584.50 251.64 125.00 re S
+0.055 0.055 0.047 rg
+40.00 691.50 251.64 18.00 re f
+0.000 0.750 0.650 rg
+BT /F2 8.00 Tf 50.00 697.50 Td (EDITORIAL FRONTEND \(REACT / VITE\)) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 677.50 Td (Aesthetic: Luxury editorial design \(Kinfolk / Haute Horlogerie\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 667.70 Td (Palette: Ink \(#0E0E0C\), Warm Ivory \(#F4EFE6\), Electric Teal) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 657.90 Td (\(#00E5C7\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 648.10 Td (Scrollytelling: GSAP ScrollTrigger, Lenis smooth scrolling.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 638.30 Td (Visualizations: Custom D3 telemetry series \(monoline SVG) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 628.50 Td (illustrations\).) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 618.70 Td (Offline Safe: Full client-side mock drill engine if backend is) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 608.90 Td (detached.) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 7.20 Tf 50.00 599.10 Td (Deployment: Vercel Edge CDN with zero-config SPA rewrites.) Tj ET
+0.920 0.980 0.970 rg
+303.64 584.50 251.64 125.00 re f
+0.000 0.750 0.650 RG
+0.80 w
+303.64 584.50 251.64 125.00 re S
+0.000 0.450 0.400 rg
+303.64 691.50 251.64 18.00 re f
+1.000 1.000 1.000 rg
+BT /F2 8.00 Tf 313.64 697.50 Td (BACKEND API \(FASTAPI ASYNC ENGINE\)) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 677.50 Td (Runtime: Python 3.12+ ASGI with async event loop \(uvloop\).) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 667.70 Td (Standards: OpenAPI 3.1 & Schema 2.0.0 compliance.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 657.90 Td (Performance: Sub-10ms end-to-end multi-agent diagnostic latency.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 648.10 Td (Serverless: Vercel Python Serverless / AWS Lambda via) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 638.30 Td (`api/index.py`.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 628.50 Td (Containerized: Dockerfile with multi-stage build for on-premise) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 618.70 Td (NOCs.) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 608.90 Td (Persistence: Local JSON report vault with SHA-256 integrity) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 7.20 Tf 313.64 599.10 Td (audits.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 568.50 Td (2. CORE API DATA CONTRACTS \(SCHEMA 2.0.0 COMPLIANT\)) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 564.50 m 555.28 564.50 l S
+[] 0 d
+0.055 0.055 0.047 rg
+40.00 538.50 515.28 16.00 re f
+0.000 0.750 0.650 rg
+BT /F2 7.20 Tf 48.00 543.50 Td (METHOD) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 7.20 Tf 105.00 543.50 Td (ENDPOINT) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 7.20 Tf 260.00 543.50 Td (PAYLOAD / PARAMS) Tj ET
+0.000 0.750 0.650 rg
+BT /F2 7.20 Tf 415.00 543.50 Td (RESPONSE CONTRACT) Tj ET
+1.000 1.000 1.000 rg
+40.00 521.00 515.28 17.50 re f
+0.840 0.850 0.870 RG
+0.40 w
+40.00 521.00 515.28 17.50 re S
+0.100 0.600 0.350 rg
+BT /F2 6.80 Tf 48.00 526.50 Td (GET) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 6.80 Tf 105.00 526.50 Td (/health & /api/health) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 260.00 526.50 Td (None) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 415.00 526.50 Td (HealthResponse \(status, active_agents, version\)) Tj ET
+1.000 1.000 1.000 rg
+40.00 503.50 515.28 17.50 re f
+0.840 0.850 0.870 RG
+0.40 w
+40.00 503.50 515.28 17.50 re S
+0.100 0.600 0.350 rg
+BT /F2 6.80 Tf 48.00 509.00 Td (GET) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 6.80 Tf 105.00 509.00 Td (/api/scenarios) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 260.00 509.00 Td (None) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 415.00 509.00 Td (ScenarioListResponse \(12 catalog scenarios\)) Tj ET
+1.000 1.000 1.000 rg
+40.00 486.00 515.28 17.50 re f
+0.840 0.850 0.870 RG
+0.40 w
+40.00 486.00 515.28 17.50 re S
+0.100 0.600 0.350 rg
+BT /F2 6.80 Tf 48.00 491.50 Td (GET) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 6.80 Tf 105.00 491.50 Td (/api/scenarios/{id}) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 260.00 491.50 Td (scenario_id \(path\)) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 415.00 491.50 Td (ScenarioDetailResponse \(metadata, raw records\)) Tj ET
+0.975 0.975 0.980 rg
+40.00 468.50 515.28 17.50 re f
+0.840 0.850 0.870 RG
+0.40 w
+40.00 468.50 515.28 17.50 re S
+0.000 0.450 0.400 rg
+BT /F2 6.80 Tf 48.00 474.00 Td (POST) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 6.80 Tf 105.00 474.00 Td (/api/diagnose) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 260.00 474.00 Td ({telemetry, scenario_name}) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 415.00 474.00 Td (DiagnosticReport \(2.0.0 root cause, runbook\)) Tj ET
+1.000 1.000 1.000 rg
+40.00 451.00 515.28 17.50 re f
+0.840 0.850 0.870 RG
+0.40 w
+40.00 451.00 515.28 17.50 re S
+0.100 0.600 0.350 rg
+BT /F2 6.80 Tf 48.00 456.50 Td (GET) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 6.80 Tf 105.00 456.50 Td (/api/reports) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 260.00 456.50 Td (?limit=50&offset=0) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 415.00 456.50 Td (ReportListResponse \(paginated historic audits\)) Tj ET
+0.975 0.975 0.980 rg
+40.00 433.50 515.28 17.50 re f
+0.840 0.850 0.870 RG
+0.40 w
+40.00 433.50 515.28 17.50 re S
+0.000 0.450 0.400 rg
+BT /F2 6.80 Tf 48.00 439.00 Td (POST) Tj ET
+0.055 0.055 0.047 rg
+BT /F3 6.80 Tf 105.00 439.00 Td (/api/reports/{id}/ask) Tj ET
+0.400 0.420 0.450 rg
+BT /F1 6.80 Tf 260.00 439.00 Td ({question: str}) Tj ET
+0.055 0.055 0.047 rg
+BT /F1 6.80 Tf 415.00 439.00 Td (AskReportResponse \(grounded answer, cited evidence\)) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 11.00 Tf 40.00 417.50 Td (3. OPERATIONAL SAFETY, GOVERNANCE & AUDIT INTEGRITY) Tj ET
+0.055 0.055 0.047 RG
+0.80 w
+[] 0 d
+40.00 413.50 m 555.28 413.50 l S
+[] 0 d
+0.975 0.975 0.980 rg
+40.00 297.50 515.28 106.00 re f
+0.840 0.850 0.870 RG
+1.00 w
+40.00 297.50 515.28 106.00 re S
+0.000 0.750 0.650 rg
+40.00 297.50 3.50 106.00 re f
+0.000 0.450 0.400 rg
+BT /F2 8.20 Tf 52.00 389.50 Td (ENTERPRISE NOC COMPLIANCE & SAFETY GUARDRAILS) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 54.00 376.50 Td (Human Approval Gates:) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 150.40 376.50 Td (All mutation playbooks enforce `requires_human_approval = True`. Dangerous actions \(e.g. `interface) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 150.40 368.00 Td (GigabitEthernet0/1 shutdown`, `router bgp 65001 neighbor reset`\) require verified operator confirmation before) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 150.40 359.50 Td (triggering execution webhooks.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 54.00 348.50 Td (Idempotent Runbooks:) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 146.00 348.50 Td (Every recommended command script is required to be safe to execute multiple times without unexpected state) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 146.00 340.00 Td (degradation. Remediation includes automated post-check verification sequences.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 54.00 329.00 Td (Cryptographic Audit Trail:) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 172.40 329.00 Td (Reports stored in the Vault include immutable SHA-256 checksums of the input telemetry payload, agent) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 172.40 320.50 Td (reasoning trajectory, and recommended commands. Provides non-repudiation for regulatory audits.) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 7.20 Tf 54.00 309.50 Td (Zero Telemetry Ingestion Loss:) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 190.00 309.50 Td (The Ingestion Staging Engine handles truncated network logs, unexpected delimiter deviations, and) Tj ET
+0.100 0.110 0.120 rg
+BT /F1 6.80 Tf 190.00 301.00 Td (non-UTF8 sensor output safely, producing structured RecordValidationErrors without crashing.) Tj ET
+0.840 0.850 0.870 RG
+0.75 w
+[] 0 d
+40.00 45.00 m 555.28 45.00 l S
+[] 0 d
+0.400 0.420 0.450 rg
+BT /F1 7.50 Tf 40.00 32.00 Td (CONFIDENTIAL  *  ENTERPRISE NOC NETWORK FAULT DIAGNOSIS ENGINE  *  SCHEMA V2.0.0) Tj ET
+0.055 0.055 0.047 rg
+BT /F2 8.00 Tf 509.52 32.00 Td (Page 5 of 5) Tj ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> /Contents 15 0 R >>
+endobj
+xref
+0 17
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000149 00000 n 
+0000000219 00000 n 
+0000000294 00000 n 
+0000000362 00000 n 
+0000000435 00000 n 
+0000009969 00000 n 
+0000010131 00000 n 
+0000020431 00000 n 
+0000020594 00000 n 
+0000029160 00000 n 
+0000029324 00000 n 
+0000039126 00000 n 
+0000039290 00000 n 
+0000048304 00000 n 
+trailer
+<< /Size 17 /Root 1 0 R >>
+startxref
+48468
+%%EOF

@@ -9,7 +9,7 @@ import {
   LighthouseIllustration,
   MagnifierIllustration,
 } from "../components/Illustrations";
-import { apiService } from "../services/api";
+import { apiService, API_BASE } from "../services/api";
 import type { ScenarioDefinition, TelemetryRecord } from "../types/telemetry";
 
 export const Ingest: React.FC = () => {
@@ -50,7 +50,8 @@ export const Ingest: React.FC = () => {
   };
 
   const handleDownloadCsv = (scenarioId: string) => {
-    window.open(`http://127.0.0.1:8000/api/scenarios/${scenarioId}/csv`, "_blank");
+    const base = API_BASE || "";
+    window.open(`${base}/api/scenarios/${scenarioId}/csv`, "_blank");
   };
 
   // Header alias normalization table

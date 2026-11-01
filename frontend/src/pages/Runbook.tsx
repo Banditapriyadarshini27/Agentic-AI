@@ -33,7 +33,10 @@ export const Runbook: React.FC = () => {
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  const actions: CorrectiveAction[] = report.recommended_corrective_actions || [];
+  const actions: CorrectiveAction[] =
+    (report.recommended_corrective_actions && report.recommended_corrective_actions.length > 0)
+      ? report.recommended_corrective_actions
+      : ((report as any).recommendations || (report as any).prioritized_actions || []);
 
   return (
     <PageTransition theme="ivory">
@@ -67,7 +70,17 @@ export const Runbook: React.FC = () => {
 
         {/* Sequential Runbook List */}
         <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
-          {actions.map((act, idx) => {
+          {actions.length === 0 ? (
+            <div style={{ borderTop: "var(--hairline-ink)", paddingTop: "2.5rem" }}>
+              <p className="serif-subhead" style={{ fontSize: "1.375rem", marginBottom: "0.5rem" }}>
+                Zero Corrective Actions Required
+              </p>
+              <p style={{ opacity: 0.7, maxWidth: "56ch" }}>
+                All observed interfaces and metrics conform to nominal operational baselines. No disruptive mitigation commands have been scheduled.
+              </p>
+            </div>
+          ) : (
+            actions.map((act, idx) => {
             const isAuthorized = !!authorizedActions[act.priority];
             const currentTab = activeTab[idx] || "command";
             const isDisruptive = act.requires_human_approval;
@@ -271,7 +284,7 @@ export const Runbook: React.FC = () => {
                 </div>
               </div>
             );
-          })}
+          }))}
         </div>
       </div>
     </PageTransition>

@@ -2,7 +2,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:13:27.949129Z",
+    "timestamp": "2026-11-01T07:02:19.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 11.0,
@@ -23,7 +23,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:13:27.949129Z",
+    "timestamp": "2026-11-01T07:02:19.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 11.0,
@@ -44,7 +44,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:13:27.949129Z",
+    "timestamp": "2026-11-01T07:02:19.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 11.0,
@@ -65,7 +65,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:13:27.949129Z",
+    "timestamp": "2026-11-01T07:02:19.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 11.0,
@@ -86,7 +86,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:13:37.949129Z",
+    "timestamp": "2026-11-01T07:02:29.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 12.5,
@@ -107,7 +107,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:13:37.949129Z",
+    "timestamp": "2026-11-01T07:02:29.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 12.5,
@@ -128,7 +128,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:13:37.949129Z",
+    "timestamp": "2026-11-01T07:02:29.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 12.5,
@@ -149,7 +149,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:13:37.949129Z",
+    "timestamp": "2026-11-01T07:02:29.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 12.5,
@@ -170,7 +170,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:13:47.949129Z",
+    "timestamp": "2026-11-01T07:02:39.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 14.0,
@@ -191,7 +191,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:13:47.949129Z",
+    "timestamp": "2026-11-01T07:02:39.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 14.0,
@@ -212,7 +212,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:13:47.949129Z",
+    "timestamp": "2026-11-01T07:02:39.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 14.0,
@@ -233,7 +233,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:13:47.949129Z",
+    "timestamp": "2026-11-01T07:02:39.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 14.0,
@@ -254,7 +254,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:13:57.949129Z",
+    "timestamp": "2026-11-01T07:02:49.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 11.0,
@@ -275,7 +275,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:13:57.949129Z",
+    "timestamp": "2026-11-01T07:02:49.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 11.0,
@@ -296,7 +296,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:13:57.949129Z",
+    "timestamp": "2026-11-01T07:02:49.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 11.0,
@@ -317,7 +317,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:13:57.949129Z",
+    "timestamp": "2026-11-01T07:02:49.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 11.0,
@@ -338,7 +338,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:14:07.949129Z",
+    "timestamp": "2026-11-01T07:02:59.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 12.5,
@@ -359,7 +359,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:07.949129Z",
+    "timestamp": "2026-11-01T07:02:59.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 12.5,
@@ -380,7 +380,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:14:07.949129Z",
+    "timestamp": "2026-11-01T07:02:59.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 12.5,
@@ -401,7 +401,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:14:07.949129Z",
+    "timestamp": "2026-11-01T07:02:59.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 12.5,
@@ -422,7 +422,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:14:17.949129Z",
+    "timestamp": "2026-11-01T07:03:09.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 14.0,
@@ -443,7 +443,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:17.949129Z",
+    "timestamp": "2026-11-01T07:03:09.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 14.0,
@@ -464,7 +464,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:14:17.949129Z",
+    "timestamp": "2026-11-01T07:03:09.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 14.0,
@@ -485,7 +485,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:14:17.949129Z",
+    "timestamp": "2026-11-01T07:03:09.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 14.0,
@@ -506,7 +506,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:14:27.949129Z",
+    "timestamp": "2026-11-01T07:03:19.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 11.0,
@@ -527,7 +527,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:27.949129Z",
+    "timestamp": "2026-11-01T07:03:19.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 11.0,
@@ -548,7 +548,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:14:27.949129Z",
+    "timestamp": "2026-11-01T07:03:19.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 11.0,
@@ -569,7 +569,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:14:27.949129Z",
+    "timestamp": "2026-11-01T07:03:19.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 11.0,
@@ -590,7 +590,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:14:37.949129Z",
+    "timestamp": "2026-11-01T07:03:29.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 12.5,
@@ -611,7 +611,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:37.949129Z",
+    "timestamp": "2026-11-01T07:03:29.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 12.5,
@@ -632,7 +632,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:14:37.949129Z",
+    "timestamp": "2026-11-01T07:03:29.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 12.5,
@@ -653,7 +653,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:14:37.949129Z",
+    "timestamp": "2026-11-01T07:03:29.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 12.5,
@@ -674,7 +674,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:14:47.949129Z",
+    "timestamp": "2026-11-01T07:03:39.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 14.0,
@@ -695,7 +695,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:47.949129Z",
+    "timestamp": "2026-11-01T07:03:39.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 14.0,
@@ -716,7 +716,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:14:47.949129Z",
+    "timestamp": "2026-11-01T07:03:39.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 14.0,
@@ -737,7 +737,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:14:47.949129Z",
+    "timestamp": "2026-11-01T07:03:39.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 14.0,
@@ -758,7 +758,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:14:57.949129Z",
+    "timestamp": "2026-11-01T07:03:49.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 11.0,
@@ -779,7 +779,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:14:57.949129Z",
+    "timestamp": "2026-11-01T07:03:49.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 11.0,
@@ -800,7 +800,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:14:57.949129Z",
+    "timestamp": "2026-11-01T07:03:49.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 11.0,
@@ -821,7 +821,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:14:57.949129Z",
+    "timestamp": "2026-11-01T07:03:49.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 11.0,
@@ -842,7 +842,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:15:07.949129Z",
+    "timestamp": "2026-11-01T07:03:59.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 12.5,
@@ -863,7 +863,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:15:07.949129Z",
+    "timestamp": "2026-11-01T07:03:59.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 12.5,
@@ -884,7 +884,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:15:07.949129Z",
+    "timestamp": "2026-11-01T07:03:59.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 12.5,
@@ -905,7 +905,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:15:07.949129Z",
+    "timestamp": "2026-11-01T07:03:59.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 12.5,
@@ -926,7 +926,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T06:15:17.949129Z",
+    "timestamp": "2026-11-01T07:04:09.528154Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 14.0,
@@ -947,7 +947,7 @@
   {
     "device_id": "dist-switch-01",
     "device_type": "switch",
-    "timestamp": "2026-11-01T06:15:17.949129Z",
+    "timestamp": "2026-11-01T07:04:09.528154Z",
     "location": "Building-A",
     "interface_name": "GigabitEthernet1/0/1",
     "latency_ms": 14.0,
@@ -968,7 +968,7 @@
   {
     "device_id": "ap-floor2",
     "device_type": "access_point",
-    "timestamp": "2026-11-01T06:15:17.949129Z",
+    "timestamp": "2026-11-01T07:04:09.528154Z",
     "location": "Floor-2",
     "interface_name": "wlan0",
     "latency_ms": 14.0,
@@ -989,7 +989,7 @@
   {
     "device_id": "workstation-14",
     "device_type": "endpoint",
-    "timestamp": "2026-11-01T06:15:17.949129Z",
+    "timestamp": "2026-11-01T07:04:09.528154Z",
     "location": "Office-204",
     "interface_name": "eth0",
     "latency_ms": 14.0,

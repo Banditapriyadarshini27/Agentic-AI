@@ -2,23 +2,72 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PageTransition } from "../components/PageTransition";
 import type { DiagnosticReport } from "../types/report";
-import { MOCK_REPORT_CONGESTION } from "../services/mockData";
+import { MOCK_REPORT_CONGESTION, MOCK_SCENARIOS } from "../services/mockData";
+import { apiService } from "../services/api";
 
 export const Diagnosis: React.FC = () => {
   const [report, setReport] = useState<DiagnosticReport>(MOCK_REPORT_CONGESTION);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [activeScenario, setActiveScenario] = useState<string>("congestion");
 
   useEffect(() => {
     const cached = localStorage.getItem("netcoop_latest_report");
     if (cached) {
       try {
-        setReport(JSON.parse(cached));
+        const parsed = JSON.parse(cached);
+        if (parsed && typeof parsed === "object") {
+          setReport(parsed);
+        }
       } catch (e) {
-        console.error(e);
+        console.error("Failed to parse cached report:", e);
       }
     }
   }, []);
 
+  const handleScenarioChange = async (scenarioId: string) => {
+    setActiveScenario(scenarioId);
+    setIsLoading(true);
+    try {
+      const { records } = await apiService.getScenarioData(scenarioId);
+      const { report: newReport } = await apiService.runDiagnosis(records, scenarioId);
+      setReport(newReport);
+      localStorage.setItem("netcoop_latest_report", JSON.stringify(newReport));
+    } catch (err) {
+      console.warn("Could not load scenario diagnosis:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const isNominal = report.overall_network_health === "NOMINAL" || !report.fault_detected;
+
+  // Safe extraction of root cause candidate with bulletproof fallbacks
+  const rootCause = report.probable_root_cause || (report as any).selected_root_cause || {
+    title: report.fault_detected ? "Network Anomaly Identified" : "Nominal Network Operation",
+    description: report.summary || "All evaluated telemetry metrics remain within designated baseline parameters.",
+    supporting_symptoms: [],
+    contradicting_symptoms: [],
+    affected_devices: report.affected_devices || [],
+    evidence_references: [],
+    confidence: report.confidence_score ?? 0.95,
+  };
+
+  const affectedDevices: string[] =
+    report.affected_devices && report.affected_devices.length > 0
+      ? report.affected_devices
+      : rootCause.affected_devices || [];
+
+  const supportingSymptoms: string[] =
+    rootCause.supporting_symptoms && rootCause.supporting_symptoms.length > 0
+      ? rootCause.supporting_symptoms
+      : (rootCause as any).supporting_findings || [];
+
+  const conflictingEvidence: any[] = report.conflicting_evidence || [];
+  const uncertaintyNotes: any[] = report.uncertainty_notes || [];
+  const alternativeCauses: any[] =
+    report.alternative_causes && report.alternative_causes.length > 0
+      ? report.alternative_causes
+      : (report as any).alternative_hypotheses || [];
 
   return (
     <PageTransition theme="ivory">
@@ -30,7 +79,7 @@ export const Diagnosis: React.FC = () => {
           borderBottom: "var(--solid-ink)",
           padding: "1.75rem var(--margin-gutter)",
           display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
           gap: "2rem",
           alignItems: "baseline",
         }}
@@ -48,7 +97,7 @@ export const Diagnosis: React.FC = () => {
               textDecoration: report.overall_network_health === "CRITICAL" ? "underline" : "none",
             }}
           >
-            {report.overall_network_health}
+            {report.overall_network_health || (report.fault_detected ? "DEGRADED" : "NOMINAL")}
           </p>
         </div>
 
@@ -57,7 +106,7 @@ export const Diagnosis: React.FC = () => {
             DIAGNOSIS CERTAINTY
           </p>
           <p className="serif-subhead" style={{ fontSize: "1.25rem", marginTop: "0.25rem" }}>
-            {report.diagnosis_certainty}
+            {report.diagnosis_certainty || "CONFIRMED"}
           </p>
         </div>
 
@@ -79,7 +128,7 @@ export const Diagnosis: React.FC = () => {
               <span style={{ opacity: 0.45 }}>N/A (Zero-Fault Rule)</span>
             ) : (
               <span style={{ color: "var(--ink)", fontWeight: 500 }}>
-                {Math.round(report.confidence_score * 100)}%
+                {Math.round((report.confidence_score ?? (report as any).confidence ?? 0.95) * 100)}%
               </span>
             )}
           </p>
@@ -90,8 +139,8 @@ export const Diagnosis: React.FC = () => {
             AFFECTED DEVICES
           </p>
           <p className="serif-subhead" style={{ fontSize: "1.25rem", marginTop: "0.25rem" }}>
-            {report.affected_devices.length > 0 ? (
-              `${report.affected_devices.length} Nodes Identified`
+            {affectedDevices.length > 0 ? (
+              `${affectedDevices.length} Nodes Identified`
             ) : (
               <span style={{ opacity: 0.45 }}>None detected</span>
             )}
@@ -103,9 +152,56 @@ export const Diagnosis: React.FC = () => {
             REPORT IDENTIFIER
           </p>
           <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.875rem", marginTop: "0.25rem" }}>
-            {report.report_id}
+            {report.report_id || report.diagnosis_id || "REP-LIVE"}
           </p>
         </div>
+      </section>
+
+      {/* =========================================================================
+          SCENARIO DRILL BAR (Instant scenario switching)
+          ========================================================================= */}
+      <section
+        style={{
+          borderBottom: "var(--hairline-ink)",
+          padding: "0.75rem var(--margin-gutter)",
+          display: "flex",
+          alignItems: "center",
+          gap: "1.5rem",
+          flexWrap: "wrap",
+          fontSize: "0.8125rem",
+          backgroundColor: "rgba(14, 14, 12, 0.02)",
+        }}
+      >
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", opacity: 0.5 }}>
+          DRILL SCENARIO:
+        </span>
+        <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+          {MOCK_SCENARIOS.slice(0, 6).map((sc) => (
+            <button
+              key={sc.id}
+              onClick={() => handleScenarioChange(sc.id)}
+              disabled={isLoading}
+              style={{
+                background: "none",
+                border: "none",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.75rem",
+                cursor: "pointer",
+                padding: "2px 6px",
+                borderBottom: activeScenario === sc.id ? "1.5px solid var(--ink)" : "1px solid transparent",
+                opacity: activeScenario === sc.id ? 1 : 0.5,
+                fontWeight: activeScenario === sc.id ? 600 : 400,
+              }}
+            >
+              {sc.title.split(" ")[0]} ({sc.id})
+            </button>
+          ))}
+        </div>
+        {isLoading && (
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", color: "var(--teal)" }}>
+            Correlating evidence...
+          </span>
+        )}
       </section>
 
       {/* =========================================================================
@@ -113,7 +209,7 @@ export const Diagnosis: React.FC = () => {
           ========================================================================= */}
       <section
         style={{
-          padding: "clamp(4rem, 8vw, 7rem) var(--margin-gutter)",
+          padding: "clamp(3.5rem, 7vw, 6rem) var(--margin-gutter)",
           maxWidth: "1200px",
         }}
       >
@@ -132,20 +228,20 @@ export const Diagnosis: React.FC = () => {
         <h1
           className="serif-display"
           style={{
-            fontSize: "clamp(2.8rem, 5.5vw, 5.5rem)",
+            fontSize: "clamp(2.5rem, 5vw, 4.8rem)",
             fontWeight: 300,
-            lineHeight: 1.05,
+            lineHeight: 1.08,
             letterSpacing: "-0.025em",
             marginBottom: "2rem",
           }}
         >
-          {report.probable_root_cause.title}
+          {rootCause.title}
         </h1>
 
         {/* Affected Devices Tags */}
-        {report.affected_devices.length > 0 && (
+        {affectedDevices.length > 0 && (
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "2.5rem" }}>
-            {report.affected_devices.map((dev) => (
+            {affectedDevices.map((dev) => (
               <span
                 key={dev}
                 style={{
@@ -171,7 +267,7 @@ export const Diagnosis: React.FC = () => {
             fontWeight: 300,
           }}
         >
-          {report.probable_root_cause.description}
+          {rootCause.description}
         </p>
       </section>
 
@@ -181,14 +277,14 @@ export const Diagnosis: React.FC = () => {
       <section
         style={{
           borderTop: "var(--solid-ink)",
-          padding: "clamp(4rem, 6vw, 6rem) var(--margin-gutter)",
+          padding: "clamp(3.5rem, 5vw, 5rem) var(--margin-gutter)",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "clamp(3rem, 6vw, 6rem)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: "clamp(2.5rem, 5vw, 5rem)",
         }}
       >
         {/* Column 1: Supporting Symptoms */}
-        <div style={{ paddingRight: "clamp(1rem, 3vw, 3rem)" }}>
+        <div style={{ paddingRight: "clamp(1rem, 2vw, 2rem)" }}>
           <p
             style={{
               fontFamily: "var(--font-mono)",
@@ -201,30 +297,38 @@ export const Diagnosis: React.FC = () => {
             SUPPORTING SYMPTOMS & VERIFIED EVIDENCE
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-            {report.probable_root_cause.supporting_symptoms.map((symptom, idx) => (
-              <div
-                key={idx}
-                style={{
-                  borderTop: "var(--hairline-ink)",
-                  paddingTop: "1rem",
-                }}
-              >
-                <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", opacity: 0.4 }}>
-                  INDICATOR 0{idx + 1}
-                </p>
-                <p
-                  className="serif-subhead"
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+            {supportingSymptoms.length > 0 ? (
+              supportingSymptoms.map((symptom, idx) => (
+                <div
+                  key={idx}
                   style={{
-                    fontSize: "1.1875rem",
-                    marginTop: "0.25rem",
-                    lineHeight: 1.45,
+                    borderTop: "var(--hairline-ink)",
+                    paddingTop: "1rem",
                   }}
                 >
-                  {symptom}
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", opacity: 0.4 }}>
+                    INDICATOR 0{idx + 1}
+                  </p>
+                  <p
+                    className="serif-subhead"
+                    style={{
+                      fontSize: "1.125rem",
+                      marginTop: "0.25rem",
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    {symptom}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div style={{ borderTop: "var(--hairline-ink)", paddingTop: "1rem" }}>
+                <p style={{ fontSize: "0.9375rem", opacity: 0.5, fontStyle: "italic" }}>
+                  All telemetry metrics observed within nominal operating baselines.
                 </p>
               </div>
-            ))}
+            )}
           </div>
         </div>
 
@@ -232,7 +336,7 @@ export const Diagnosis: React.FC = () => {
         <div
           style={{
             borderLeft: "var(--hairline-ink)",
-            paddingLeft: "clamp(1.5rem, 4vw, 4rem)",
+            paddingLeft: "clamp(1.5rem, 3vw, 3rem)",
           }}
         >
           <p
@@ -247,9 +351,84 @@ export const Diagnosis: React.FC = () => {
             WHAT ARGUES AGAINST IT & PENALTIES
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-            {report.conflicting_evidence.length > 0 ? (
-              report.conflicting_evidence.map((conf, idx) => (
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+            {conflictingEvidence.length > 0 ? (
+              conflictingEvidence.map((conf: any, idx: number) => {
+                const isObj = typeof conf === "object" && conf !== null;
+                const title = isObj
+                  ? conf.type || conf.conflict_id || `CONTRADICTION ANALYSIS 0${idx + 1}`
+                  : `CONTRADICTION ANALYSIS 0${idx + 1}`;
+                const text = isObj
+                  ? conf.resolution || conf.finding_a || conf.finding_b || JSON.stringify(conf)
+                  : String(conf);
+                const penalty =
+                  isObj && conf.confidence_penalty
+                    ? `Penalty: -${Math.round(conf.confidence_penalty * 100)}%`
+                    : null;
+
+                return (
+                  <div
+                    key={idx}
+                    style={{
+                      borderTop: "var(--hairline-ink)",
+                      paddingTop: "1rem",
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                      <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", opacity: 0.4 }}>
+                        {title}
+                      </p>
+                      {penalty && (
+                        <span
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "0.6875rem",
+                            color: "var(--ink)",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {penalty}
+                        </span>
+                      )}
+                    </div>
+                    <p
+                      style={{
+                        fontSize: "0.9375rem",
+                        marginTop: "0.25rem",
+                        lineHeight: 1.5,
+                        opacity: 0.85,
+                      }}
+                    >
+                      {text}
+                    </p>
+                    {isObj && conf.agent_a && conf.agent_b && (
+                      <p
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.6875rem",
+                          opacity: 0.5,
+                          marginTop: "0.4rem",
+                        }}
+                      >
+                        Source domains: {conf.agent_a} vs {conf.agent_b}
+                      </p>
+                    )}
+                  </div>
+                );
+              })
+            ) : (
+              <p style={{ fontSize: "0.9375rem", opacity: 0.5, fontStyle: "italic", paddingTop: "0.5rem" }}>
+                No conflicting observations identified across domain agents.
+              </p>
+            )}
+
+            {uncertaintyNotes.map((note: any, idx: number) => {
+              const text =
+                typeof note === "object" && note !== null
+                  ? note.text || note.note || note.explanation || JSON.stringify(note)
+                  : String(note);
+
+              return (
                 <div
                   key={idx}
                   style={{
@@ -258,61 +437,33 @@ export const Diagnosis: React.FC = () => {
                   }}
                 >
                   <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", opacity: 0.4 }}>
-                    CONTRADICTION ANALYSIS
+                    CALIBRATION NOTE 0{idx + 1}
                   </p>
                   <p
                     style={{
-                      fontSize: "1rem",
+                      fontSize: "0.875rem",
                       marginTop: "0.25rem",
                       lineHeight: 1.5,
-                      opacity: 0.8,
+                      opacity: 0.75,
                     }}
                   >
-                    {conf}
+                    {text}
                   </p>
                 </div>
-              ))
-            ) : (
-              <p style={{ fontSize: "0.9375rem", opacity: 0.5, fontStyle: "italic" }}>
-                No conflicting observations identified across domain agents.
-              </p>
-            )}
-
-            {report.uncertainty_notes.map((note, idx) => (
-              <div
-                key={idx}
-                style={{
-                  borderTop: "var(--hairline-ink)",
-                  paddingTop: "1rem",
-                }}
-              >
-                <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", opacity: 0.4 }}>
-                  CALIBRATION NOTE
-                </p>
-                <p
-                  style={{
-                    fontSize: "0.875rem",
-                    marginTop: "0.25rem",
-                    lineHeight: 1.5,
-                    opacity: 0.75,
-                  }}
-                >
-                  {note}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          ALTERNATIVE HYPOTHESES LIST
+          ALTERNATIVE HYPOTHESES LIST (When available)
           ========================================================================= */}
-      {report.alternative_causes.length > 0 && (
+      {alternativeCauses.length > 0 && (
         <section
           style={{
             borderTop: "var(--hairline-ink)",
-            padding: "clamp(4rem, 6vw, 6rem) var(--margin-gutter)",
+            padding: "clamp(3.5rem, 5vw, 5rem) var(--margin-gutter)",
           }}
         >
           <p
@@ -328,7 +479,7 @@ export const Diagnosis: React.FC = () => {
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-            {report.alternative_causes.map((alt, idx) => (
+            {alternativeCauses.map((alt: any, idx: number) => (
               <div
                 key={idx}
                 style={{
@@ -355,7 +506,8 @@ export const Diagnosis: React.FC = () => {
                       marginTop: "0.5rem",
                     }}
                   >
-                    Reason Deprioritized: {alt.contradicting_symptoms.join("; ") || "Insufficient evidence support."}
+                    Reason Deprioritized:{" "}
+                    {(alt.contradicting_symptoms || []).join("; ") || "Insufficient corroborating telemetry evidence."}
                   </p>
                 </div>
 
@@ -376,25 +528,65 @@ export const Diagnosis: React.FC = () => {
                         top: 0,
                         height: "1px",
                         backgroundColor: "var(--ink)",
-                        width: `${alt.confidence * 100}%`,
+                        width: `${Math.round((alt.confidence || 0) * 100)}%`,
                       }}
                     />
                   </div>
                   <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", opacity: 0.6 }}>
-                    Weight: {Math.round(alt.confidence * 100)}%
+                    Weight: {Math.round((alt.confidence || 0) * 100)}%
                   </span>
                 </div>
               </div>
             ))}
           </div>
-
-          <div style={{ marginTop: "4rem", display: "flex", justifyContent: "flex-end" }}>
-            <Link to="/runbook" className="editorial-link" style={{ fontSize: "0.9375rem", fontWeight: 500 }}>
-              Proceed to safety-gated runbook actions
-            </Link>
-          </div>
         </section>
       )}
+
+      {/* =========================================================================
+          PERSISTENT EDITORIAL NAVIGATION SECTION (Always Rendered)
+          ========================================================================= */}
+      <section
+        style={{
+          borderTop: "var(--solid-ink)",
+          padding: "3rem var(--margin-gutter)",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "1.5rem",
+          backgroundColor: "rgba(14, 14, 12, 0.015)",
+        }}
+      >
+        <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+          <Link
+            to="/pipeline"
+            className="editorial-link"
+            style={{ fontSize: "0.875rem", opacity: 0.75 }}
+          >
+            ← Review Agent Reasoning Pipeline
+          </Link>
+          <Link
+            to="/telemetry"
+            className="editorial-link"
+            style={{ fontSize: "0.875rem", opacity: 0.75 }}
+          >
+            Inspect Telemetry Series
+          </Link>
+        </div>
+
+        <Link
+          to="/runbook"
+          className="editorial-link"
+          style={{
+            fontSize: "1rem",
+            fontWeight: 500,
+            borderBottom: "1.5px solid var(--ink)",
+            paddingBottom: "3px",
+          }}
+        >
+          Proceed to Safety-Gated Runbook Actions →
+        </Link>
+      </section>
     </PageTransition>
   );
 };

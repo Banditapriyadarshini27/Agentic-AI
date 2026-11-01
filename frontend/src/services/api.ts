@@ -2,7 +2,7 @@ import type { DiagnosticReport } from "../types/report";
 import type { ScenarioDefinition, TelemetryRecord } from "../types/telemetry";
 import { MOCK_REPORT_CONGESTION, MOCK_REPORT_NORMAL, MOCK_SCENARIOS, MOCK_TELEMETRY_SERIES } from "./mockData";
 
-const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined)?.replace(/\/$/, "") ?? (import.meta.env.DEV ? "http://127.0.0.1:8000" : "");
+export const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined)?.replace(/\/$/, "") ?? (import.meta.env.DEV ? "http://127.0.0.1:8000" : "");
 
 export interface HealthResponse {
   status: string;
