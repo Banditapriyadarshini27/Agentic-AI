@@ -55,3 +55,4 @@ with open("data/scenarios.py", "w", encoding="utf-8") as f:
     f.write(content)
 
 print("Scenarios updated successfully!")
+

@@ -7,3 +7,4 @@ with open("tests/test_api.py", "w", encoding="utf-8") as f:
     f.write(content)
 
 print("test_api.py updated!")
+

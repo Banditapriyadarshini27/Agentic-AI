@@ -2,7 +2,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:09:49.039194Z",
+    "timestamp": "2026-11-01T02:23:30.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 12.0,
@@ -23,7 +23,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:09:59.039194Z",
+    "timestamp": "2026-11-01T02:23:40.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 12.0,
@@ -44,7 +44,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:10:09.039194Z",
+    "timestamp": "2026-11-01T02:23:50.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 221.0,
@@ -65,7 +65,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:10:19.039194Z",
+    "timestamp": "2026-11-01T02:24:00.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 185.0,
@@ -86,7 +86,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:10:29.039194Z",
+    "timestamp": "2026-11-01T02:24:10.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 203.0,
@@ -107,7 +107,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:10:39.039194Z",
+    "timestamp": "2026-11-01T02:24:20.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 221.0,
@@ -128,7 +128,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:10:49.039194Z",
+    "timestamp": "2026-11-01T02:24:30.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 185.0,
@@ -149,7 +149,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:10:59.039194Z",
+    "timestamp": "2026-11-01T02:24:40.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 203.0,
@@ -170,7 +170,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:11:09.039194Z",
+    "timestamp": "2026-11-01T02:24:50.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 221.0,
@@ -191,7 +191,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:11:19.039194Z",
+    "timestamp": "2026-11-01T02:25:00.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 185.0,
@@ -212,7 +212,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:11:29.039194Z",
+    "timestamp": "2026-11-01T02:25:10.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 203.0,
@@ -233,7 +233,7 @@
   {
     "device_id": "core-router-01",
     "device_type": "router",
-    "timestamp": "2026-11-01T02:11:39.039194Z",
+    "timestamp": "2026-11-01T02:25:20.426362Z",
     "location": "DC-East",
     "interface_name": "TenGig0/1",
     "latency_ms": 221.0,

@@ -99,3 +99,4 @@ timestamp,device_id,status,cpu_utilization_pct,link_utilization_pct,packet_loss_
 2026-10-31T17:42:32.556385Z,SW_CAMPUS_2,Healthy,34.31,49.45,0.0,10.48,4.67,0,
 2026-10-31T17:42:32.556391Z,SW_CAMPUS_7,Warning,61.91,82.56,1.09,330.38,39.89,14,
 2026-10-31T17:42:32.556398Z,SW_CAMPUS_7,Healthy,12.69,29.34,0.0,15.65,4.31,0,
+
