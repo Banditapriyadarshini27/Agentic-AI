@@ -1,40 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 export const Cursor: React.FC = () => {
-  const [pos, setPos] = useState({ x: -100, y: -100 });
-  const [isHovering, setIsHovering] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onMouseMove = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let animId: number;
 
-      // Check if hovering interactive element
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      }
+
       const target = e.target as HTMLElement | null;
       if (target) {
-        const interactive = target.closest("a, button, input, select, textarea, [data-interactive='true'], .editorial-link");
-        setIsHovering(!!interactive);
+        const interactive = target.closest(
+          "a, button, input, select, textarea, [data-interactive='true'], .editorial-link, tr, [role='button']"
+        );
+        if (ringRef.current) {
+          if (interactive) {
+            ringRef.current.classList.add("active");
+          } else {
+            ringRef.current.classList.remove("active");
+          }
+        }
 
-        // Check if cursor is over a dark section
         const darkSection = target.closest(".theme-ink");
-        setIsDark(!!darkSection);
+        if (dotRef.current) {
+          if (darkSection) {
+            dotRef.current.classList.add("on-dark");
+          } else {
+            dotRef.current.classList.remove("on-dark");
+          }
+        }
       }
     };
 
-    window.addEventListener("mousemove", onMouseMove);
-    return () => window.removeEventListener("mousemove", onMouseMove);
+    // Fluid trailing lerp loop for the outer ring (zero React re-renders)
+    const render = () => {
+      ringX += (mouseX - ringX) * 0.22;
+      ringY += (mouseY - ringY) * 0.22;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+      }
+      animId = requestAnimationFrame(render);
+    };
+
+    animId = requestAnimationFrame(render);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("mousemove", onMouseMove);
+    };
   }, []);
 
   return (
     <>
-      <div
-        className={`custom-cursor-dot ${isDark ? "on-dark" : ""}`}
-        style={{ left: `${pos.x}px`, top: `${pos.y}px` }}
-      />
-      <div
-        className={`custom-cursor-ring ${isHovering ? "active" : ""}`}
-        style={{ left: `${pos.x}px`, top: `${pos.y}px` }}
-      />
+      <div ref={dotRef} className="custom-cursor-dot" />
+      <div ref={ringRef} className="custom-cursor-ring" />
     </>
   );
 };

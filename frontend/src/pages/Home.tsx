@@ -32,6 +32,7 @@ export const Home: React.FC = () => {
       setDiagnosisResult(diagRes.report);
       // Save to localStorage so other routes have immediate context
       localStorage.setItem("netcoop_latest_report", JSON.stringify(diagRes.report));
+      localStorage.setItem("netcoop_latest_telemetry", JSON.stringify(dataRes.records));
     } catch (err) {
       console.error("Diagnosis error:", err);
     } finally {

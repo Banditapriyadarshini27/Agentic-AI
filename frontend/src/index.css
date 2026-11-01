@@ -98,7 +98,7 @@ body {
   z-index: 1;
 }
 
-/* Custom Cursor */
+/* Custom Cursor (Hardware Accelerated) */
 .custom-cursor-dot {
   position: fixed;
   top: 0;
@@ -109,23 +109,24 @@ body {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease;
+  will-change: transform;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
 }
 
 .custom-cursor-ring {
   position: fixed;
   top: 0;
   left: 0;
-  width: 26px;
-  height: 26px;
-  border: 1px solid var(--teal);
+  width: 24px;
+  height: 24px;
+  border: 1.2px solid var(--teal);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  transform: translate(-50%, -50%);
+  will-change: transform;
   transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s ease,
               border-color 0.3s ease;
 }
 
@@ -133,11 +134,34 @@ body {
   width: 44px;
   height: 44px;
   border-color: var(--teal);
-  background-color: rgba(0, 229, 199, 0.04);
+  background-color: rgba(0, 229, 199, 0.06);
 }
 
 .custom-cursor-dot.on-dark {
   background-color: var(--ivory);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Polished Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-40);
 }
 
 /* Theme Sections */

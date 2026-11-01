@@ -2,7 +2,7 @@ import type { DiagnosticReport } from "../types/report";
 import type { ScenarioDefinition, TelemetryRecord } from "../types/telemetry";
 import { MOCK_REPORT_CONGESTION, MOCK_REPORT_NORMAL, MOCK_SCENARIOS, MOCK_TELEMETRY_SERIES } from "./mockData";
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined)?.replace(/\/$/, "") ?? (import.meta.env.DEV ? "http://127.0.0.1:8000" : "");
 
 export interface HealthResponse {
   status: string;
@@ -19,8 +19,11 @@ export const apiService = {
    */
   async checkHealth(): Promise<HealthResponse> {
     try {
-      const res = await fetch(`${API_BASE}/health`, { signal: AbortSignal.timeout(2000) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      let res = await fetch(`${API_BASE}/health`, { signal: AbortSignal.timeout(2000) }).catch(() => null);
+      if (!res || !res.ok) {
+        res = await fetch(`${API_BASE}/api/health`, { signal: AbortSignal.timeout(2000) }).catch(() => null);
+      }
+      if (!res || !res.ok) throw new Error("Health check unreachable");
       const data = await res.json();
       return { ...data, isMock: false };
     } catch {

@@ -266,8 +266,11 @@ export const Vault: React.FC = () => {
               </span>
               <div style={{ textAlign: "right" }}>
                 <button
-                  onClick={() => {
-                    localStorage.setItem("netcoop_latest_report", JSON.stringify(MOCK_REPORT_CONGESTION));
+                  onClick={async () => {
+                    const res = await apiService.getReportById(r.report_id);
+                    if (res && res.report) {
+                      localStorage.setItem("netcoop_latest_report", JSON.stringify(res.report));
+                    }
                     window.location.href = "/diagnosis";
                   }}
                   className="editorial-link"

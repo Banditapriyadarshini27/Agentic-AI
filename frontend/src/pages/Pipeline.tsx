@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PageTransition } from "../components/PageTransition";
 import type { AgentMessage } from "../types/report";
 
 export const Pipeline: React.FC = () => {
   const [selectedAgent, setSelectedAgent] = useState<string | null>(null);
   const [activeStep, setActiveStep] = useState<number>(3);
+  const [report, setReport] = useState<any>(null);
+
+  useEffect(() => {
+    const cached = localStorage.getItem("netcoop_latest_report");
+    if (cached) {
+      try {
+        setReport(JSON.parse(cached));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, []);
 
   const pipelineStages = [
     { id: 1, name: "Telemetry Ingestion", description: "Validation, schema normalization, outlier quarantine" },
@@ -18,47 +30,47 @@ export const Pipeline: React.FC = () => {
     {
       id: "performance_agent",
       name: "Performance Agent",
-      status: "SUCCESS",
-      duration_ms: 18.4,
-      findings_count: 2,
-      confidence: 0.95,
-      evidence_count: 4,
+      status: report?.successful_agents?.includes("performance_agent") ? "SUCCESS" : (report?.failed_agents?.includes("performance_agent") ? "FAILED" : "SUCCESS"),
+      duration_ms: report?.agent_execution_summary?.performance_agent?.duration_ms || 18.4,
+      findings_count: report?.individual_agent_findings?.performance_agent?.length ?? 2,
+      confidence: report?.individual_agent_findings?.performance_agent?.[0]?.confidence ?? 0.95,
+      evidence_count: report?.supporting_evidence?.filter((e: any) => e.source_agent === "performance_agent" || !e.source_agent)?.length || 4,
     },
     {
       id: "infrastructure_agent",
       name: "Infrastructure Agent",
-      status: "SUCCESS",
-      duration_ms: 22.1,
-      findings_count: 1,
-      confidence: 0.92,
-      evidence_count: 3,
+      status: report?.successful_agents?.includes("infrastructure_agent") ? "SUCCESS" : (report?.failed_agents?.includes("infrastructure_agent") ? "FAILED" : "SUCCESS"),
+      duration_ms: report?.agent_execution_summary?.infrastructure_agent?.duration_ms || 22.1,
+      findings_count: report?.individual_agent_findings?.infrastructure_agent?.length ?? 1,
+      confidence: report?.individual_agent_findings?.infrastructure_agent?.[0]?.confidence ?? 0.92,
+      evidence_count: report?.supporting_evidence?.filter((e: any) => e.source_agent === "infrastructure_agent")?.length || 3,
     },
     {
       id: "connectivity_agent",
       name: "Connectivity Agent",
-      status: "SUCCESS",
-      duration_ms: 16.9,
-      findings_count: 1,
-      confidence: 0.88,
-      evidence_count: 2,
+      status: report?.successful_agents?.includes("connectivity_agent") ? "SUCCESS" : (report?.failed_agents?.includes("connectivity_agent") ? "FAILED" : "SUCCESS"),
+      duration_ms: report?.agent_execution_summary?.connectivity_agent?.duration_ms || 16.9,
+      findings_count: report?.individual_agent_findings?.connectivity_agent?.length ?? 1,
+      confidence: report?.individual_agent_findings?.connectivity_agent?.[0]?.confidence ?? 0.88,
+      evidence_count: report?.supporting_evidence?.filter((e: any) => e.source_agent === "connectivity_agent")?.length || 2,
     },
     {
       id: "correlation_agent",
       name: "Fault Correlation Agent",
       status: "SUCCESS",
-      duration_ms: 38.6,
-      findings_count: 3,
-      confidence: 0.94,
-      evidence_count: 9,
+      duration_ms: report?.agent_execution_summary?.correlation_agent?.duration_ms || 38.6,
+      findings_count: report?.validated_findings?.length ?? 3,
+      confidence: report?.confidence_score ?? 0.94,
+      evidence_count: report?.supporting_evidence?.length ?? 9,
     },
     {
       id: "recommendation_agent",
       name: "Recommendation Agent",
       status: "SUCCESS",
-      duration_ms: 24.2,
-      findings_count: 0,
+      duration_ms: report?.agent_execution_summary?.recommendation_agent?.duration_ms || 24.2,
+      findings_count: (report?.recommended_corrective_actions || report?.recommendations || []).length,
       confidence: 1.0,
-      evidence_count: 3,
+      evidence_count: (report?.recommended_corrective_actions || report?.recommendations || []).length,
     },
   ];
 

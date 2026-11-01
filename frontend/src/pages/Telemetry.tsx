@@ -17,6 +17,18 @@ export const Telemetry: React.FC = () => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   useEffect(() => {
+    const cachedTelem = localStorage.getItem("netcoop_latest_telemetry");
+    if (cachedTelem) {
+      try {
+        const parsed = JSON.parse(cachedTelem);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setRecords(parsed);
+          return;
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
     apiService.getScenarioData("congestion").then((res) => {
       if (res.records && res.records.length > 0) {
         setRecords(res.records);
@@ -25,6 +37,12 @@ export const Telemetry: React.FC = () => {
   }, []);
 
   const deviceList: string[] = Array.from(new Set(records.map((r: TelemetryRecord) => r.device_id)));
+
+  useEffect(() => {
+    if (deviceList.length > 0 && !deviceList.includes(selectedDevice)) {
+      setSelectedDevice(deviceList[0]);
+    }
+  }, [deviceList, selectedDevice]);
   const deviceData: TelemetryRecord[] = records.filter((r: TelemetryRecord) => r.device_id === selectedDevice);
 
   // Helper to draw clean D3/SVG line chart

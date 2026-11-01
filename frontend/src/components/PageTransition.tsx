@@ -9,22 +9,22 @@ interface PageTransitionProps {
 const curtainVariants = {
   initial: {
     opacity: 0,
-    y: 16,
+    y: 12,
   },
   animate: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
-      ease: [0.76, 0, 0.24, 1] as [number, number, number, number],
-      staggerChildren: 0.08,
+      duration: 0.45,
+      ease: [0.25, 1, 0.5, 1] as [number, number, number, number],
+      staggerChildren: 0.05,
     },
   },
   exit: {
     opacity: 0,
-    y: -12,
+    y: -8,
     transition: {
-      duration: 0.4,
+      duration: 0.2,
       ease: [0.76, 0, 0.24, 1] as [number, number, number, number],
     },
   },

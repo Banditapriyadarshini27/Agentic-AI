@@ -40,6 +40,7 @@ export const Ingest: React.FC = () => {
       const dataRes = await apiService.getScenarioData(scenarioId);
       const diagRes = await apiService.runDiagnosis(dataRes.records, scenarioId);
       localStorage.setItem("netcoop_latest_report", JSON.stringify(diagRes.report));
+      localStorage.setItem("netcoop_latest_telemetry", JSON.stringify(dataRes.records));
       navigate("/diagnosis");
     } catch (err) {
       console.error(err);
@@ -225,6 +226,7 @@ export const Ingest: React.FC = () => {
     try {
       const diagRes = await apiService.runDiagnosis(uploadedRecords, selectedFileName || "uploaded_custom_telemetry");
       localStorage.setItem("netcoop_latest_report", JSON.stringify(diagRes.report));
+      localStorage.setItem("netcoop_latest_telemetry", JSON.stringify(uploadedRecords));
       navigate("/diagnosis");
     } catch (err: any) {
       console.error("Diagnosis error:", err);

@@ -1,6 +1,6 @@
 # NetCoop AI vs. Traditional Baseline Evaluation Report
 
-**Evaluation Timestamp:** 2026-11-01 02:25:46 UTC  
+**Evaluation Timestamp:** 2026-11-01 03:33:16 UTC  
 **Evaluation Methodology:** Direct comparative evaluation of NetCoop AI (Autonomous Multi-Agent Causal Inference) against a traditional Naive Threshold-Alarm monitoring system.
 
 ---
@@ -10,9 +10,9 @@
 Traditional network management systems rely on independent threshold alarms. During real incidents, this creates severe **alert storms** (floods of 30–50 alerts per incident) without identifying the actual root cause.
 
 NetCoop AI demonstrates:
-1. **Dramatic Noise Compression:** Reduces alert storms from **36.29 alarms/episode** down to **0.86 causal root cause/episode**.
-2. **Robust Multi-Symptom Resilience:** Under the **Hard Evaluation Set** (2x noise, 10–30% missing metrics, overlapping secondary faults, borderline thresholds, and 10% corrupted data), NetCoop achieves **71.4% accuracy** and **66.7% Macro F1**, outperforming the traditional baseline (57.1% accuracy).
-3. **Zero Hallucination / Strict Safety Gating:** **46.2%** of disruptive remediation actions require explicit human operator authorization.
+1. **Dramatic Noise Compression:** Reduces alert storms from **33.09 alarms/episode** down to **0.86 causal root cause/episode**.
+2. **Robust Multi-Symptom Resilience:** Under the **Hard Evaluation Set** (2x noise, 10–30% missing metrics, overlapping secondary faults, borderline thresholds, and 10% corrupted data), NetCoop achieves **75.0% accuracy** and **70.0% Macro F1**, outperforming the traditional baseline (48.2% accuracy).
+3. **Zero Hallucination / Strict Safety Gating:** **46.6%** of disruptive remediation actions require explicit human operator authorization.
 
 ---
 
@@ -20,11 +20,11 @@ NetCoop AI demonstrates:
 
 | Metric | Easy Set: Baseline | Easy Set: NetCoop AI | Hard Set: Baseline | Hard Set: NetCoop AI |
 | :--- | :---: | :---: | :---: | :---: |
-| **Diagnostic Accuracy** | 85.7% | **85.7%** | 57.1% | **71.4%** |
-| **Macro F1 Score** | 81.0% | **81.0%** | 48.6% | **66.7%** |
-| **False Positive Rate (Healthy)** | 0.0% | **0.0%** | 100.0% | **0.0%** |
-| **Alert / Root Cause Volume** | 57.43 alerts/ep | **0.86 cause/ep** | 36.29 alerts/ep | **0.86 cause/ep** |
-| **Safety Gating Rate** | 0.0% (Ungated) | **54.5%** | 0.0% (Ungated) | **46.2%** |
+| **Diagnostic Accuracy** | 82.1% | **80.4%** | 48.2% | **75.0%** |
+| **Macro F1 Score** | 77.3% | **76.0%** | 48.3% | **70.0%** |
+| **False Positive Rate (Healthy)** | 0.0% | **12.5%** | 62.5% | **0.0%** |
+| **Alert / Root Cause Volume** | 45.36 alerts/ep | **0.84 cause/ep** | 33.09 alerts/ep | **0.86 cause/ep** |
+| **Safety Gating Rate** | 0.0% (Ungated) | **55.8%** | 0.0% (Ungated) | **46.6%** |
 
 ---
 
